@@ -2,60 +2,97 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <!-- Previene zoom táctil accidental y asegura escala correcta -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>WOD 3640</title>
+  <title>WOD Vertical 50"</title>
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
-    body, html { height:100%; background:#000; color:#fff; overflow:hidden; font-family:Arial, sans-serif; }
+    
+    body, html { 
+      height: 100%; 
+      background: #000; 
+      color: #fff; 
+      overflow: hidden; /* Evita scrollbars en el TV */
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+    }
 
-    /* Siempre rota 90° en TVs (tanto 32" como 50") */
-    .rotated {
+    /* --- ESTILO PARA TV (POR DEFECTO) --- */
+    /* El contenedor rota 90 grados y se ajusta a las dimensiones invertidas */
+    .rotated-container {
       position: absolute;
-      top: 50%; left: 50%;
-      width: 100vh; height: 100vw;
+      top: 50%; 
+      left: 50%;
+      /* En un TV 1920x1080, queremos que el alto sea 1920 (100vw) y el ancho 1080 (100vh) */
+      width: 100vh; 
+      height: 100vw;
       transform: translate(-50%, -50%) rotate(90deg);
       transform-origin: center;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: center; /* Centrado vertical del bloque */
+      justify-content: center; /* Centrado horizontal del bloque */
     }
 
     .content {
-      width: 94%;
-      padding: 20px 10px;
-      transform-origin: top left;
+      width: 90%; /* Margen de seguridad lateral */
+      /* El escalado por JS se aplicará aquí */
+      transform-origin: center center;
+      text-align: center; /* Opcional: Centrar textos */
     }
 
     h3 {
-      font-size: 7vw;
-      color: #00ff9d;
-      margin: 22px 0 12px 0;
+      font-size: 5vh; /* Usamos vh porque en rotación el ancho del texto es la altura del TV */
+      color: #00ff9d; /* Verde neón estilo Crossfit */
+      margin: 30px 0 15px 0;
       text-transform: uppercase;
-    }
-    p {
-      font-size: 4.7vw;
-      line-height: 1.38;
-      color: #f0f0f0;
-      white-space: pre-line;
+      letter-spacing: 2px;
+      border-bottom: 2px solid #333;
+      padding-bottom: 5px;
+      display: inline-block;
     }
 
-    /* SOLO en pantallas pequeñas (celular y laptop) quita la rotación para que se vea bien */
-    @media (max-width: 1200px) and (orientation: portrait) {
-      .rotated {
-        transform: none;
+    p {
+      font-size: 3.5vh; 
+      line-height: 1.4;
+      color: #f0f0f0;
+      white-space: pre-line; /* Respeta los saltos de línea del código */
+      margin-bottom: 20px;
+      font-weight: 300;
+    }
+
+    /* --- ESTILO PARA MÓVIL/PC (EDICIÓN) --- */
+    /* Si la pantalla es más alta que ancha (celular vertical), anulamos la rotación */
+    @media (orientation: portrait) {
+      body, html { overflow: auto; } /* Permitir scroll en el cel */
+      
+      .rotated-container {
+        position: static;
         width: 100%;
-        height: 100%;
+        height: auto;
+        transform: none;
+        display: block;
+        padding: 20px;
       }
+
+      .content {
+        width: 100%;
+        transform: none !important; /* Anular escalado JS */
+      }
+
+      h3 { font-size: 24px; border-color: #444; }
+      p { font-size: 16px; color: #ccc; }
     }
   </style>
 </head>
 <body>
 
-<div class="rotated">
-  <div class="content" id="wod"></div>
+<div class="rotated-container">
+  <div class="content" id="wod-display">
+    <!-- El WOD se inyecta aquí -->
+  </div>
 </div>
 
 <script>
+// --- DATOS DE LOS WODS ---
 const wods = {
   domingo: `<h3>DOMINGO - Rudolph’s Revenge</h3><p>For time (30 min cap):<br>800m Run<br>50 Burpee Box Jump Overs (24/20)<br>40 Clean & Jerks (60/40 kg)<br>30 Ring Muscle-Ups<br>20 Snatches (70/48 kg)<br>10 Rope Climbs (15ft)<br>800m Run<br><br>Scale disponible en el box</p>`,
 
@@ -73,21 +110,58 @@ const wods = {
 };
 
 const dias = ['domingo','lunes','martes','miercoles','jueves','viernes','sabado'];
-const hoy = new Date().getDay();
-document.getElementById('wod').innerHTML = wods[dias[hoy]];
 
-// Auto-escala solo cuando está rotado (es decir, en el TV)
-function escalar() {
+// Función principal de carga
+function cargarWOD() {
+  const hoyIndex = new Date().getDay();
+  const diaNombre = dias[hoyIndex];
+  const contenedor = document.getElementById('wod-display');
+  
+  // Si el contenido cambió (ej: cambió el día), actualizar el HTML
+  if (contenedor.dataset.dia !== diaNombre) {
+    contenedor.innerHTML = wods[diaNombre] || "<h3>Descanso</h3><p>No hay WOD programado.</p>";
+    contenedor.dataset.dia = diaNombre; // Guardamos el día actual para comparar luego
+    console.log("WOD actualizado a: " + diaNombre);
+    // Esperamos un momento a que renderice y ajustamos la escala
+    setTimeout(ajustarEscala, 100); 
+  }
+}
+
+// Lógica de escalado automático para TV
+function ajustarEscala() {
+  // Solo escalar si NO es un dispositivo móvil vertical (es decir, si estamos en modo TV rotado)
+  if (window.matchMedia("(orientation: portrait)").matches) return;
+
   const content = document.querySelector('.content');
-  if (window.getComputedStyle(document.querySelector('.rotated')).transform.includes('rotate')) {
-    const escala = Math.min(1, (window.innerHeight * 0.96) / content.scrollHeight);
+  const container = document.querySelector('.rotated-container');
+  
+  // Reseteamos escala para medir
+  content.style.transform = 'scale(1)';
+  
+  // En modo rotado: 
+  // La altura disponible es el ancho de la ventana (window.innerWidth)
+  // Usamos un margen de seguridad (0.95)
+  const alturaDisponible = window.innerWidth * 0.95; 
+  const alturaContenido = content.scrollHeight;
+
+  if (alturaContenido > alturaDisponible) {
+    const escala = alturaDisponible / alturaContenido;
     content.style.transform = `scale(${escala})`;
   } else {
+    // Si cabe de sobra, podemos dejarlo en 1 o escalar un poco hacia arriba si se ve muy chico
+    // Por ahora lo dejamos en 1 para que sea nítido
     content.style.transform = 'scale(1)';
   }
 }
-escalar();
-window.addEventListener('resize', escalar);
+
+// 1. Cargar al iniciar
+cargarWOD();
+window.addEventListener('resize', ajustarEscala);
+
+// 2. CHECK AUTOMÁTICO DE CAMBIO DE DÍA
+// Revisa cada 60 segundos si cambió el día para actualizar sin tocar el TV
+setInterval(cargarWOD, 60000); 
+
 </script>
 </body>
 </html>
