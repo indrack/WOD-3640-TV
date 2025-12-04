@@ -8,111 +8,85 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     body, html { 
       height:100%; background:#000; color:#fff; overflow:hidden; 
-      font-family:Arial, Helvetica, sans-serif;
+      font-family:"Helvetica Neue", Arial, sans-serif;
     }
-    .rotated {
+    /* Contenedor que rota 90° solo en pantallas anchas (TV vertical) */
+    .wrapper {
       position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%) rotate(90deg);
-      transform-origin: center;
-      width: 100vh; height: 100vw;
+      top: 0; left: 0; width: 100%; height: 100%;
       display: flex; align-items: center; justify-content: center;
     }
-    .container {
-      width: 95%; max-height: 98vh; overflow: hidden; padding: 20px 15px;
+    .rotated {
+      width: 100vh;
+      height: 100vw;
+      transform: rotate(90deg);
+      transform-origin: center;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .content {
+      width: 95%;
+      padding: 20px 10px;
+      transform-origin: top left;
     }
     h3 {
-      font-size: 6.8vw; color: #00ff9d; margin: 18px 0 10px 0; 
-      text-transform: uppercase; letter-spacing: 1px;
+      font-size: 6.8vw;
+      color: #00ff9d;
+      margin: 20px 0 12px 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
     p {
-      font-size: 4.6vw; line-height: 1.35; color: #f0f0f0; 
-      margin: 6px 0; white-space: pre-line;
+      font-size: 4.6vw;
+      line-height: 1.38;
+      color: #f0f0f0;
+      white-space: pre-line;
     }
-    /* Escala automática si el WOD es muy largo */
-    .auto-scale { 
-      transform-origin: top left; 
-      width: 100%; 
-      transition: transform 0.3s ease;
+    /* En pantallas pequeñas (laptop/celular) NO rota, se ve normal vertical */
+    @media (max-height: 800px), (max-width: 1000px) {
+      .rotated { transform: none; width: 100%; height: 100%; }
     }
   </style>
 </head>
 <body>
-<div class="rotated">
-  <div class="container">
-    <div class="auto-scale" id="contenido"></div>
+<div class="wrapper">
+  <div class="rotated">
+    <div class="content" id="wod"></div>
   </div>
 </div>
 
-<!-- TODOS LOS WODs EN UN OBJETO (más fácil de mantener) -->
 <script>
 const wods = {
-  lunes: `
-<h3>WARM-UP</h3>
-<p>Banded 7s<br>-into-<br>8:00 AMRAP<br>30-sec Row Easy<br>10 Bird Dogs<br>10 Deadbugs<br>5 Inchworms<br>5 Dynamic Squat Stretch<br>5 Strict Press (empty bar)</p>
-<h3>WEIGHTLIFTING - Shoulder Press</h3>
-<p>STRENGTH<br>5 sets<br>6 Shoulder Press<br>-build across sets by feel-</p>
-<h3>METCON - Jack Frost</h3>
-<p>EMOM 16 min<br>Min 1 → 15/12 Cal Row<br>Min 2 → 15 Thrusters (75/55)<br>Min 3 → 15 C2B Pull-Ups<br>Min 4 → Rest</p>`,
+  domingo: `<h3>DOMINGO - Rudolph’s Revenge</h3><p>For time (30 min cap):<br>800m Run<br>50 Burpee Box Jump Overs (24/20)<br>40 Clean & Jerks (60/40 kg)<br>30 Ring Muscle-Ups<br>20 Snatches (70/48 kg)<br>10 Rope Climbs (15ft)<br>800m Run<br><br>Scale disponible en el box</p>`,
 
-  martes: `
-<h3>WARM-UP</h3>
-<p>10:00 AMRAP<br>1:00 Cardio<br>10 Sit-Ups<br>10 Box Step-Ups<br>4x50ft Shuttle Runs</p>
-<h3>METCON - Hermey the Elf</h3>
-<p>25 Box Step-Ups (24/20)<br>50 Sit-Ups<br>25 Box Jumps (24/20)<br>50 V-Ups<br>25 Box Jump Overs (24/20)<br>50 Sit-Ups<br>25 Box Step-Ups (24/20)</p>
-<h3>ACCESORIO</h3>
-<p>Mini Pump - Lower Push<br>4 sets<br>30 sec Wall Sit<br>20 Front Foot Elevated Split Lunge (6")<br>10 each side @ RPE 7/10<br>-rest 1:00 between sets-</p>`,
+  lunes: `<h3>WARM-UP</h3><p>Banded 7s<br>-into-<br>8:00 AMRAP<br>30-sec Row Easy<br>10 Bird Dogs<br>10 Deadbugs<br>5 Inchworms<br>5 Dynamic Squat Stretch<br>5 Strict Press (empty bar)</p><h3>WEIGHTLIFTING - Shoulder Press</h3><p>STRENGTH<br>5 sets<br>6 Shoulder Press<br>-build across sets by feel-</p><h3>METCON - Jack Frost</h3><p>EMOM 16 min<br>Min 1 → 15/12 Cal Row<br>Min 2 → 15 Thrusters (75/55)<br>Min 3 → 15 C2B Pull-Ups<br>Min 4 → Rest</p>`,
 
-  miercoles: `
-<h3>WARM-UP</h3>
-<p>8:00 AMRAP<br>100m Run<br>10 Alternating V-Ups<br>3 Snatch Deadlifts (empty bar)<br>3 Hang Muscle Snatch (empty bar)<br>3 Snatch Push Press (empty bar)<br>3 Overhead Squats (empty bar)<br>1 Squat Snatch (empty bar)</p>
-<h3>WEIGHTLIFTING - Snatch</h3>
-<p>5 sets<br>2 Snatch @ 75-80%<br>-complete a set every 2:00-</p>
-<h3>METCON - The Winter Warlock</h3>
-<p>2:00 AMRAP<br>400m Run<br>12 Alternating DB Snatches (50/35)<br>Max Burpee over DB in remaining time<br>-rest 1:00 between sets-<br>Continue until 75 Burpees over DB are complete<br>(KG conv: 22.5/15)</p>`,
+  martes: `<h3>WARM-UP</h3><p>10:00 AMRAP<br>1:00 Cardio<br>10 Sit-Ups<br>10 Box Step-Ups<br>4x50ft Shuttle Runs</p><h3>METCON - Hermey the Elf</h3><p>25 Box Step-Ups (24/20)<br>50 Sit-Ups<br>25 Box Jumps (24/20)<br>50 V-Ups<br>25 Box Jump Overs (24/20)<br>50 Sit-Ups<br>25 Box Step-Ups (24/20)</p><h3>ACCESORIO</h3><p>Mini Pump - Lower Push<br>4 sets<br>30 sec Wall Sit<br>20 Front Foot Elevated Split Lunge (6")<br>10 each side @ RPE 7/10<br>-rest 1:00 between sets-</p>`,
 
-  jueves: `
-<h3>WARM-UP</h3>
-<p>10:00 AMRAP<br>30-sec Machine<br>30-sec Jump Rope<br>5 Worlds Greatest Stretch (each side)<br>5 Roll and Reach<br>5 Air Squats</p>
-<h3>METCON - Bumble</h3>
-<p>Every 2:00 (8 sets)<br>15 Air Squats<br>50 Double Unders<br>15 Air Squats</p>
-<h3>ACCESORIO “Shock Method”</h3>
-<p>3 sets<br>6 Bench Press (heavy)<br>12 Push-Ups<br>25 Bench DB Fly (light)<br>-rest 2:00 to 2:30 between sets-</p>`,
+  miercoles: `<h3>WARM-UP</h3><p>8:00 AMRAP<br>100m Run<br>10 Alternating V-Ups<br>3 Snatch Deadlifts (empty bar)<br>3 Hang Muscle Snatch (empty bar)<br>3 Snatch Push Press (empty bar)<br>3 Overhead Squats (empty bar)<br>1 Squat Snatch (empty bar)</p><h3>WEIGHTLIFTING - Snatch</h3><p>5 sets<br>2 Snatch @ 75-80%<br>-complete a set every 2:00-</p><h3>METCON - The Winter Warlock</h3><p>2:00 AMRAP<br>400m Run<br>12 Alternating DB Snatches (50/35)<br>Max Burpee over DB in remaining time<br>-rest 1:00 between sets-<br>Continue until 75 Burpees over DB<br>(KG conv: 22.5/15)</p>`,
 
-  viernes: `
-<h3>WARM-UP</h3>
-<p>2:00 Machine<br>-into-<br>8:00 AMRAP<br>10 Banded Good Mornings<br>10 Banded Shoulder Press<br>10 Deadbugs<br>5 Deadlifts (empty bar, build across sets)</p>
-<h3>GYMNASTICS - Handstand Walk</h3>
-<p>HANDSTAND/GRIP (WEEK 6)<br>7-minute AMRAP<br>Ascending ladder 1-2-3-4-5-6...<br>Level 1: Box Pike to Hollow Plank<br>Level 2-3: Shoulder Taps / Walk</p>
-<h3>METCON - Yukon Cornelius</h3>
-<p>3 Rounds<br>7 Deadlifts (225/155)<br>14 Handstand Push-Ups<br>21 Toes to Bar</p>`,
+  jueves: `<h3>WARM-UP</h3><p>10:00 AMRAP<br>30-sec Machine<br>30-sec Jump Rope<br>5 Worlds Greatest Stretch (each side)<br>5 Roll and Reach<br>5 Air Squats</p><h3>METCON - Bumble</h3><p>Every 2:00 (8 sets)<br>15 Air Squats<br>50 Double Unders<br>15 Air Squats</p><h3>ACCESORIO “Shock Method”</h3><p>3 sets<br>6 Bench Press (heavy)<br>12 Push-Ups<br>25 Bench DB Fly (light)<br>-rest 2:00 to 2:30 between sets-</p>`,
 
-  sabado: `
-<h3>WARM-UP</h3>
-<p>3:00 Machine<br>-into-<br>9:00 AMRAP<br>4 Lunge Matrix<br>10-sec Handstand Hold<br>4 Wall Balls (light)<br>2x50ft Shuttle Run<br>4 Hang Muscle Cleans (empty bar)</p>
-<h3>METCON - Snow Miser</h3>
-<p>Every 1:00 (24:00)<br>Min 1 → 20 Wall Balls (20/14)<br>Min 2 → 15ft HSW (or 2 Wall Walks)<br>Min 3 → 8x50ft Shuttle Runs<br>Min 4 → 5 Hang Power Cleans (85/58)</p>
-<h3>ACCESORIO</h3>
-<p>3 sets<br>10 Weighted Pull-Ups @ RPE 7/10<br>12 DB Lateral Raises @ RPE 7/10<br>15 Banded Pull Aparts<br>-rest 90-60 seg-</p>`,
+  viernes: `<h3>WARM-UP</h3><p>2:00 Machine<br>-into-<br>8:00 AMRAP<br>10 Banded Good Mornings<br>10 Banded Shoulder Press<br>10 Deadbugs<br>5 Deadlifts (empty bar, build across sets)</p><h3>GYMNASTICS - Handstand Walk</h3><p>HANDSTAND/GRIP (WEEK 6)<br>7-minute AMRAP<br>Ascending ladder 1-2-3-4-5-6...<br>Level 1: Box Pike to Hollow Plank<br>Level 2-3: Shoulder Taps / Walk</p><h3>METCON - Yukon Cornelius</h3><p>3 Rounds<br>7 Deadlifts (225/155)<br>14 Handstand Push-Ups<br>21 Toes to Bar</p>`,
 
-  domingo: `
-<h3>DOMINGO - Rudolph’s Revenge</h3>
-<p>For time (30 min cap):<br>800m Run<br>50 Burpee Box Jump Overs (24/20)<br>40 Clean & Jerks (60/40 kg)<br>30 Ring Muscle-Ups<br>20 Snatches (70/48 kg)<br>10 Rope Climbs (15ft)<br>800m Run<br><br>Scale disponible en el box</p>`
+  sabado: `<h3>WARM-UP</h3><p>3:00 Machine<br>-into-<br>9:00 AMRAP<br>4 Lunge Matrix<br>10-sec Handstand Hold<br>4 Wall Balls (light)<br>2x50ft Shuttle Run<br>4 Hang Muscle Cleans (empty bar)</p><h3>METCON - Snow Miser</h3><p>Every 1:00 (24:00)<br>Min 1 → 20 Wall Balls (20/14)<br>Min 2 → 15ft HSW (or 2 Wall Walks)<br>Min 3 → 8x50ft Shuttle Runs<br>Min 4 → 5 Hang Power Cleans (85/58)</p><h3>ACCESORIO</h3><p>3 sets<br>10 Weighted Pull-Ups @ RPE 7/10<br>12 DB Lateral Raises @ RPE 7/10<br>15 Banded Pull Aparts<br>-rest 90-60 seg-</p>`
 };
 
-// Mostrar WOD del día y ajustar tamaño automáticamente
 const dias = ['domingo','lunes','martes','miercoles','jueves','viernes','sabado'];
 const hoy = new Date().getDay();
-const contenido = document.getElementById('contenido');
-contenido.innerHTML = wods[dias[hoy]];
+document.getElementById('wod').innerHTML = wods[dias[hoy]];
 
-// Auto-escala si es muy largo (nunca se corta)
-function ajustarEscala() {
-  const escala = Math.min(1, 1700 / contenido.scrollHeight); // 1700 ≈ altura útil en vertical
-  contenido.style.transform = `scale(${escala})`;
+// Auto-escala SOLO en el TV vertical grande
+function escalar() {
+  const content = document.querySelector('.content');
+  if (window.innerWidth > 1000) {  // Solo en pantallas grandes (TV vertical)
+    const escala = Math.min(1, (window.innerHeight * 0.95) / content.scrollHeight);
+    content.style.transform = `scale(${escala})`;
+  } else {
+    content.style.transform = 'scale(1)';
+  }
 }
-ajustarEscala();
-window.onresize = ajustarEscala;
+escalar();
+window.addEventListener('resize', escalar);
 </script>
 </body>
 </html>
