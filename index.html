@@ -2,164 +2,186 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <!-- Previene zoom táctil accidental y asegura escala correcta -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>WOD Vertical 50"</title>
   <style>
+    /* --- RESET BÁSICO --- */
     * { margin:0; padding:0; box-sizing:border-box; }
     
     body, html { 
-      height: 100%; 
+      width: 100vw;
+      height: 100vh;
       background: #000; 
       color: #fff; 
-      overflow: hidden; /* Evita scrollbars en el TV */
+      overflow: hidden; /* Cero scrollbars */
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
     }
 
-    /* --- ESTILO PARA TV (POR DEFECTO) --- */
-    /* El contenedor rota 90 grados y se ajusta a las dimensiones invertidas */
-    .rotated-container {
+    /* --- CONTENEDOR PRINCIPAL ROTADO --- */
+    /* 
+       La magia: Forzamos al contenedor a tener las dimensiones INVERTIDAS del navegador.
+       Si el navegador es 1920x1080, el contenedor será 1080x1920.
+    */
+    .tv-container {
       position: absolute;
       top: 50%; 
       left: 50%;
-      /* En un TV 1920x1080, queremos que el alto sea 1920 (100vw) y el ancho 1080 (100vh) */
-      width: 100vh; 
-      height: 100vw;
-      transform: translate(-50%, -50%) rotate(90deg);
-      transform-origin: center;
+      width: 100vh;  /* El ancho será la altura del navegador */
+      height: 100vw; /* La altura será el ancho del navegador */
+      
+      /* ROTACIÓN: -90deg o 90deg dependiendo de hacia dónde giraste la TV.
+         Prueba cambiar a 90deg si queda de cabeza. */
+      transform: translate(-50%, -50%) rotate(-90deg);
+      
       display: flex;
-      align-items: center; /* Centrado vertical del bloque */
-      justify-content: center; /* Centrado horizontal del bloque */
+      flex-direction: column;
+      justify-content: center; /* Se ajustará por JS */
+      align-items: center;
+      background: #000;
     }
 
-    .content {
-      width: 90%; /* Margen de seguridad lateral */
-      /* El escalado por JS se aplicará aquí */
+    /* Contenedor interno que escala */
+    .content-wrapper {
+      width: 95%; /* Usamos casi todo el ancho vertical */
+      display: flex;
+      flex-direction: column;
+      /* Esto distribuye el contenido uniformemente si sobra espacio */
+      justify-content: space-evenly; 
+      align-items: center;
+      text-align: center;
+      height: auto;
       transform-origin: center center;
-      text-align: center; /* Opcional: Centrar textos */
     }
 
+    /* --- TIPOGRAFÍA --- */
+    /* Usamos unidades relativas para que escalen con el zoom */
     h3 {
-      font-size: 5vh; /* Usamos vh porque en rotación el ancho del texto es la altura del TV */
-      color: #00ff9d; /* Verde neón estilo Crossfit */
-      margin: 30px 0 15px 0;
+      font-size: 3em; 
+      color: #00ff9d; /* Verde Crossfit */
+      margin: 0.5em 0 0.2em 0;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      border-bottom: 2px solid #333;
-      padding-bottom: 5px;
+      border-bottom: 3px solid #333;
       display: inline-block;
+      text-shadow: 0px 0px 10px rgba(0, 255, 157, 0.3);
     }
 
     p {
-      font-size: 3.5vh; 
-      line-height: 1.4;
+      font-size: 2.2em; 
+      line-height: 1.3;
       color: #f0f0f0;
-      white-space: pre-line; /* Respeta los saltos de línea del código */
-      margin-bottom: 20px;
-      font-weight: 300;
+      white-space: pre-line;
+      margin-bottom: 0.5em;
+      font-weight: 400;
     }
 
-    /* --- ESTILO PARA MÓVIL/PC (EDICIÓN) --- */
-    /* Si la pantalla es más alta que ancha (celular vertical), anulamos la rotación */
+    /* Negritas dentro de los párrafos si las hubiera */
+    strong { color: #fff; font-weight: 700; }
+
+    /* --- MÓVIL (DEBUG) --- */
     @media (orientation: portrait) {
-      body, html { overflow: auto; } /* Permitir scroll en el cel */
-      
-      .rotated-container {
+      body, html { overflow: auto; height: auto; }
+      .tv-container {
         position: static;
         width: 100%;
         height: auto;
         transform: none;
-        display: block;
         padding: 20px;
+        display: block;
       }
-
-      .content {
-        width: 100%;
-        transform: none !important; /* Anular escalado JS */
-      }
-
-      h3 { font-size: 36px; border-color: #444; }
-      p { font-size: 24px; color: #ccc; }
+      .content-wrapper { width: 100%; transform: none !important; }
+      h3 { font-size: 24px; }
+      p { font-size: 16px; }
     }
   </style>
 </head>
 <body>
 
-<div class="rotated-container">
-  <div class="content" id="wod-display">
-    <!-- El WOD se inyecta aquí -->
+<div class="tv-container">
+  <div class="content-wrapper" id="wod-display">
+    <!-- El WOD se carga aquí -->
   </div>
 </div>
 
 <script>
-// --- DATOS DE LOS WODS ---
+// --- DATA WODS ---
 const wods = {
-  domingo: `<h3>DOMINGO - Rudolph’s Revenge</h3><p>For time (30 min cap):<br>800m Run<br>50 Burpee Box Jump Overs (24/20)<br>40 Clean & Jerks (60/40 kg)<br>30 Ring Muscle-Ups<br>20 Snatches (70/48 kg)<br>10 Rope Climbs (15ft)<br>800m Run<br><br>Scale disponible en el box</p>`,
-
-  lunes: `<h3>WARM-UP</h3><p>Banded 7s<br>-into-<br>8:00 AMRAP<br>30-sec Row Easy<br>10 Bird Dogs<br>10 Deadbugs<br>5 Inchworms<br>5 Dynamic Squat Stretch<br>5 Strict Press (empty bar)</p><h3>WEIGHTLIFTING - Shoulder Press</h3><p>STRENGTH<br>5 sets<br>6 Shoulder Press<br>-build across sets by feel-</p><h3>METCON - Jack Frost</h3><p>EMOM 16 min<br>Min 1 → 15/12 Cal Row<br>Min 2 → 15 Thrusters (75/55)<br>Min 3 → 15 C2B Pull-Ups<br>Min 4 → Rest</p>`,
-
-  martes: `<h3>WARM-UP</h3><p>10:00 AMRAP<br>1:00 Cardio<br>10 Sit-Ups<br>10 Box Step-Ups<br>4x50ft Shuttle Runs</p><h3>METCON - Hermey the Elf</h3><p>25 Box Step-Ups (24/20)<br>50 Sit-Ups<br>25 Box Jumps (24/20)<br>50 V-Ups<br>25 Box Jump Overs (24/20)<br>50 Sit-Ups<br>25 Box Step-Ups (24/20)</p><h3>ACCESORIO</h3><p>Mini Pump - Lower Push<br>4 sets<br>30 sec Wall Sit<br>20 Front Foot Elevated Split Lunge (6")<br>10 each side @ RPE 7/10<br>-rest 1:00 between sets-</p>`,
-
-  miercoles: `<h3>WARM-UP</h3><p>8:00 AMRAP<br>100m Run<br>10 Alternating V-Ups<br>3 Snatch Deadlifts (empty bar)<br>3 Hang Muscle Snatch (empty bar)<br>3 Snatch Push Press (empty bar)<br>3 Overhead Squats (empty bar)<br>1 Squat Snatch (empty bar)</p><h3>WEIGHTLIFTING - Snatch</h3><p>5 sets<br>2 Snatch @ 75-80%<br>-complete a set every 2:00-</p><h3>METCON - The Winter Warlock</h3><p>2:00 AMRAP<br>400m Run<br>12 Alternating DB Snatches (50/35)<br>Max Burpee over DB<br>-rest 1:00 between sets-<br>Continue until 75 Burpees<br>(KG conv: 22.5/15)</p>`,
-
-  jueves: `<h3>WARM-UP</h3><p>10:00 AMRAP<br>30-sec Machine<br>30-sec Jump Rope<br>5 Worlds Greatest Stretch (each side)<br>5 Roll and Reach<br>5 Air Squats</p><h3>METCON - Bumble</h3><p>Every 2:00 (8 sets)<br>15 Air Squats<br>50 Double Unders<br>15 Air Squats</p><h3>ACCESORIO “Shock Method”</h3><p>3 sets<br>6 Bench Press (heavy)<br>12 Push-Ups<br>25 Bench DB Fly (light)<br>-rest 2:00 to 2:30 between sets-</p>`,
-
-  viernes: `<h3>WARM-UP</h3><p>2:00 Machine<br>-into-<br>8:00 AMRAP<br>10 Banded Good Mornings<br>10 Banded Shoulder Press<br>10 Deadbugs<br>5 Deadlifts (empty bar, build across sets)</p><h3>GYMNASTICS - Handstand Walk</h3><p>HANDSTAND/GRIP (WEEK 6)<br>7-minute AMRAP<br>Ascending ladder 1-2-3-4-5-6...<br>Level 1: Box Pike to Hollow Plank<br>Level 2-3: Shoulder Taps / Walk</p><h3>METCON - Yukon Cornelius</h3><p>3 Rounds<br>7 Deadlifts (225/155)<br>14 Handstand Push-Ups<br>21 Toes to Bar</p>`,
-
-  sabado: `<h3>WARM-UP</h3><p>3:00 Machine<br>-into-<br>9:00 AMRAP<br>4 Lunge Matrix<br>10-sec Handstand Hold<br>4 Wall Balls (light)<br>2x50ft Shuttle Run<br>4 Hang Muscle Cleans (empty bar)</p><h3>METCON - Snow Miser</h3><p>Every 1:00 (24:00)<br>Min 1 → 20 Wall Balls (20/14)<br>Min 2 → 15ft HSW (or 2 Wall Walks)<br>Min 3 → 8x50ft Shuttle Runs<br>Min 4 → 5 Hang Power Cleans (85/58)</p><h3>ACCESORIO</h3><p>3 sets<br>10 Weighted Pull-Ups @ RPE 7/10<br>12 DB Lateral Raises @ RPE 7/10<br>15 Banded Pull Aparts<br>-rest 90-60 seg-</p>`
+  domingo: `<h3>DOMINGO - Rudolph’s Revenge</h3><p>For time (30 min cap):<br>800m Run<br>50 Burpee Box Jump Overs (24/20)<br>40 Clean & Jerks (60/40 kg)<br>30 Ring Muscle-Ups<br>20 Snatches (70/48 kg)<br>10 Rope Climbs (15ft)<br>800m Run</p>`,
+  
+  lunes: `<h3>WARM-UP</h3><p>8:00 AMRAP<br>30s Row Easy • 10 Bird Dogs<br>10 Deadbugs • 5 Inchworms</p><h3>STRENGTH - Press</h3><p>5 sets x 6 Reps<br>Shoulder Press (Heavy)</p><h3>METCON - Jack Frost</h3><p>EMOM 16 min<br>1: 15/12 Cal Row<br>2: 15 Thrusters (75/55)<br>3: 15 C2B Pull-Ups<br>4: Rest</p>`,
+  
+  martes: `<h3>WARM-UP</h3><p>10:00 AMRAP<br>1:00 Cardio • 10 Sit-Ups<br>10 Box Step-Ups</p><h3>METCON - Hermey</h3><p>For Time:<br>25 Box Step-Ups<br>50 Sit-Ups<br>25 Box Jumps<br>50 V-Ups<br>25 Box Jump Overs<br>50 Sit-Ups<br>25 Step-Ups</p><h3>ACCESORIO</h3><p>4 sets:<br>30s Wall Sit<br>20 Split Lunge</p>`,
+  
+  miercoles: `<h3>WARM-UP</h3><p>8:00 AMRAP<br>Run 100m • 10 Alt V-Ups<br>Barbell Warmup</p><h3>WEIGHTLIFTING</h3><p>Snatch<br>5 sets x 2 reps @ 75-80%<br>(Every 2:00)</p><h3>METCON - Winter Warlock</h3><p>2:00 ON / 1:00 OFF<br>400m Run<br>12 Alt DB Snatch<br>Max Burpees over DB<br>*(Target: 75 Burpees)*</p>`,
+  
+  jueves: `<h3>WARM-UP</h3><p>10:00 AMRAP<br>30s Machine • 30s Jump Rope<br>Dynamic Stretching</p><h3>METCON - Bumble</h3><p>Every 2:00 (8 sets)<br>15 Air Squats<br>50 Double Unders<br>15 Air Squats</p><h3>ACCESORIO</h3><p>3 sets "Shock Method"<br>6 Bench Press (Heavy)<br>12 Push-Ups<br>25 DB Fly (Light)<br>Rest 2:00</p>`,
+  
+  viernes: `<h3>WARM-UP</h3><p>2:00 Machine + 8:00 AMRAP<br>Band Work & Deadlift Prep</p><h3>SKILL</h3><p>Handstand Walk / Hold<br>Practice 10 mins</p><h3>METCON - Yukon</h3><p>3 Rounds For Time:<br>7 Deadlifts (225/155)<br>14 HSPU<br>21 Toes to Bar</p>`,
+  
+  sabado: `<h3>WARM-UP</h3><p>9:00 AMRAP<br>Lunge Matrix • HS Hold<br>Wall Balls • Shuttle Run</p><h3>METCON - Snow Miser</h3><p>EMOM 24 min<br>1: 20 Wall Balls<br>2: 15ft HS Walk<br>3: 8x50ft Shuttle Run<br>4: 5 Hang Power Cleans (Heavy)</p><h3>ACCESORIO</h3><p>3 sets Bodybuilding<br>Pull-Ups • Lateral Raises</p>`
 };
 
 const dias = ['domingo','lunes','martes','miercoles','jueves','viernes','sabado'];
 
-// Función principal de carga
 function cargarWOD() {
   const hoyIndex = new Date().getDay();
   const diaNombre = dias[hoyIndex];
   const contenedor = document.getElementById('wod-display');
   
-  // Si el contenido cambió (ej: cambió el día), actualizar el HTML
+  // Forzar actualización para pruebas (puedes quitar esto en producción)
+  // const diaNombre = 'jueves'; 
+
   if (contenedor.dataset.dia !== diaNombre) {
-    contenedor.innerHTML = wods[diaNombre] || "<h3>Descanso</h3><p>No hay WOD programado.</p>";
-    contenedor.dataset.dia = diaNombre; // Guardamos el día actual para comparar luego
-    console.log("WOD actualizado a: " + diaNombre);
-    // Esperamos un momento a que renderice y ajustamos la escala
-    setTimeout(ajustarEscala, 100); 
+    contenedor.innerHTML = wods[diaNombre] || "<h3>DESCANSO</h3><p>Box Cerrado / Open Box</p>";
+    contenedor.dataset.dia = diaNombre;
+    
+    // Esperamos un poco para que el DOM renderice antes de calcular matemáticas
+    setTimeout(ajustarEscalaPerfecta, 50); 
   }
 }
 
-// Lógica de escalado automático para TV
-function ajustarEscala() {
-  // Solo escalar si NO es un dispositivo móvil vertical (es decir, si estamos en modo TV rotado)
-  if (window.matchMedia("(orientation: portrait)").matches) return;
+function ajustarEscalaPerfecta() {
+  if (window.matchMedia("(orientation: portrait)").matches) return; // No hacer nada en celular vertical
 
-  const content = document.querySelector('.content');
-  const container = document.querySelector('.rotated-container');
+  const wrapper = document.getElementById('wod-display');
+  const container = document.querySelector('.tv-container');
   
-  // Reseteamos escala para medir
-  content.style.transform = 'scale(1)';
+  // 1. Reseteamos para medir tamaño natural
+  wrapper.style.transform = 'scale(1)';
+  wrapper.style.height = 'auto'; // Dejar que crezca naturalmente
   
-  // En modo rotado: 
-  // La altura disponible es el ancho de la ventana (window.innerWidth)
-  // Usamos un margen de seguridad (0.95)
-  const alturaDisponible = window.innerWidth * 0.95; 
-  const alturaContenido = content.scrollHeight;
+  // 2. Obtenemos dimensiones
+  // En modo rotado: el ancho disponible es la altura de la ventana
+  const alturaDisponible = window.innerWidth; // Es width porque está rotado
+  const margenSeguridad = 40; // Pixeles de margen
+  
+  const alturaContenido = wrapper.scrollHeight;
+  
+  // 3. Calculamos el Factor de Escala
+  // Queremos llenar la pantalla, pero sin pasarnos.
+  let escala = (alturaDisponible - margenSeguridad) / alturaContenido;
+  
+  // Limites de seguridad: No hacer la letra microscópica ni gigantesca absurda
+  if (escala > 2.5) escala = 2.5; 
+  if (escala < 0.5) escala = 0.5;
 
-  if (alturaContenido > alturaDisponible) {
-    const escala = alturaDisponible / alturaContenido;
-    content.style.transform = `scale(${escala})`;
+  console.log(`Altura Disp: ${alturaDisponible}, Altura Cont: ${alturaContenido}, Escala: ${escala}`);
+
+  // 4. Aplicar escala
+  wrapper.style.transform = `scale(${escala})`;
+  
+  // 5. Centrado Vertical Fino
+  // Si escalamos hacia abajo, puede quedar espacio visible. 
+  // Expandimos el contenedor interno para que el flexbox 'space-evenly' funcione visualmente si es necesario
+  if (escala > 1) {
+     // Si estamos agrandando, genial.
   } else {
-    // Si cabe de sobra, podemos dejarlo en 1 o escalar un poco hacia arriba si se ve muy chico
-    // Por ahora lo dejamos en 1 para que sea nítido
-    content.style.transform = 'scale(1)';
+     // Si estamos achicando, nos aseguramos que esté centrado
   }
 }
 
-// 1. Cargar al iniciar
-cargarWOD();
-window.addEventListener('resize', ajustarEscala);
-
-// 2. CHECK AUTOMÁTICO DE CAMBIO DE DÍA
-// Revisa cada 60 segundos si cambió el día para actualizar sin tocar el TV
+// Inicializar
+window.addEventListener('load', cargarWOD);
+window.addEventListener('resize', () => setTimeout(ajustarEscalaPerfecta, 100));
 setInterval(cargarWOD, 60000); 
 
 </script>
