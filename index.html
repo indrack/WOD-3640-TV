@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CrossFit 3640 - WOD del día</title>
+  <style>
+    body, html { margin:0; padding:0; height:100%; background:#000; color:#fff; font-family:Arial, sans-serif; overflow:hidden; }
+    .rotated {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) rotate(90deg);
+      transform-origin: center center;
+      width: 100vh; height: 100vw;
+    }
+    .container { text-align:center; padding:20px; }
+    h1 { font-size:5vw; margin:10px 0; color:#e63946; }
+    h2 { font-size:8vw; margin:20px 0 10px; color:#a8dadc; }
+    h3 { font-size:6.5vw; color:#f1faee; margin:30px 0 10px; }
+    p { font-size:5vw; line-height:1.45; margin:10px 0; color:#f1faee; }
+    .fecha { font-size:6.5vw; color:#ffd166; margin-bottom:25px; font-weight:bold; }
+    .reloj { position:fixed; top:15px; right:25px; font-size:13vw; color:#06d6a0; font-weight:bold; z-index:10; }
+  </style>
+</head>
+<body>
+<div class="rotated">
+  <div class="container">
+    <h1>CROSSFIT 3640</h1>
+    <div class="fecha" id="hoy"></div>
+
+    <!-- ==================== SEMANA 01-07 DIC 2025 ==================== -->
+    
+    <div id="lunes" style="display:none">
+      <h2>01/12/2025 - LUNES</h2>
+      <h3>WARM-UP</h3>
+      <p>Banded 7s<br>-into-<br>8:00 AMRAP<br>30-sec Row Easy<br>10 Bird Dogs<br>10 Deadbugs<br>5 Inchworms<br>5 Dynamic Squat Stretch<br>5 Strict Press (empty bar)</p>
+      <h3>WEIGHTLIFTING (Shoulder Press)</h3>
+      <p>STRENGTH<br>5 sets<br>6 Shoulder Press<br>-build across sets by feel-</p>
+      <h3>CUSTOM METCON - Jack Frost</h3>
+      <p>EMOM 16 min<br>Min 1 → 15/12 Cal Row<br>Min 2 → 15 Thrusters (75/55)<br>Min 3 → 15 C2B Pull-Ups<br>Min 4 → Rest</p>
+    </div>
+
+    <div id="martes" style="display:none">
+      <h2>02/12/2025 - MARTES</h2>
+      <h3>WARM-UP</h3>
+      <p>10:00 AMRAP<br>1:00 Cardio<br>10 Sit-Ups<br>10 Box Step-Ups<br>4x50ft Shuttle Runs</p>
+      <h3>CUSTOM METCON - Hermey the Elf</h3>
+      <p>25 Box Step-Ups (24/20)<br>50 Sit-Ups<br>25 Box Jumps (24/20)<br>50 V-Ups<br>25 Box Jump Overs (24/20)<br>50 Sit-Ups<br>25 Box Step-Ups (24/20)</p>
+      <h3>ACCESORIO</h3>
+      <p>Mini Pump - Lower Push<br>4 sets<br>30 sec Wall Sit<br>20 Front Foot Elevated Split Lunge (6")<br>10 each side @ RPE 7/10<br>-rest 1:00 between sets-</p>
+    </div>
+
+    <div id="miercoles" style="display:none">
+      <h2>03/12/2025 - MIÉRCOLES</h2>
+      <h3>WARM-UP</h3>
+      <p>8:00 AMRAP<br>100m Run<br>10 Alternating V-Ups<br>3 Snatch Deadlifts (empty bar)<br>3 Hang Muscle Snatch (empty bar)<br>3 Snatch Push Press (empty bar)<br>3 Overhead Squats (empty bar)<br>1 Squat Snatch (empty bar)</p>
+      <h3>WEIGHTLIFTING (Snatch)</h3>
+      <p>5 sets<br>2 Snatch @ 75-80%<br>-complete a set every 2:00-</p>
+      <h3>CUSTOM METCON - The Winter Warlock</h3>
+      <p>2:00 AMRAP<br>400m Run<br>12 Alternating DB Snatches (50/35)<br>Max Burpee over DB in remaining time<br>-rest 1:00 between sets-<br>Continue until 75 Burpees over DB are complete (KG conv: 22.5/15)</p>
+    </div>
+
+    <div id="jueves" style="display:none">
+      <h2>04/12/2025 - JUEVES</h2>
+      <h3>WARM-UP</h3>
+      <p>10:00 AMRAP<br>30-sec Machine<br>30-sec Jump Rope<br>5 Worlds Greatest Stretch (each side)<br>5 Roll and Reach<br>5 Air Squats</p>
+      <h3>CUSTOM METCON - Bumble</h3>
+      <p>Every 2:00 (8 sets)<br>15 Air Squats<br>50 Double Unders<br>15 Air Squats</p>
+      <h3>ACCESORIO “Shock Method”</h3>
+      <p>3 sets<br>6 Bench Press (heavy)<br>12 Push-Ups<br>25 Bench DB Fly (light)<br>-rest 2:00 to 2:30 between sets-</p>
+    </div>
+
+    <div id="viernes" style="display:none">
+      <h2>05/12/2025 - VIERNES</h2>
+      <h3>WARM-UP</h3>
+      <p>2:00 Machine<br>-into-<br>8:00 AMRAP<br>10 Banded Good Mornings<br>10 Banded Shoulder Press<br>10 Deadbugs<br>5 Deadlifts (empty bar, build across sets)</p>
+      <h3>GYMNASTICS (Handstand Walk)</h3>
+      <p>HANDSTAND/GRIP (WEEK 6)<br>7-minute AMRAP<br>Ascending ladder of reps 1-2-3-4-5-6 etc…<br>Level 1: Box Pike to Hollow Plank<br>Level 2: Walk Walk Plank Shoulder Taps (right/left = 1 rep)<br>Level 3: Walk Walk Shoulder Taps (right/left = 1 rep)</p>
+      <h3>CUSTOM METCON - Yukon Cornelius</h3>
+      <p>3 Rounds<br>7 Deadlifts (225/155)<br>14 Handstand Push-Ups<br>21 Toes to Bar</p>
+    </div>
+
+    <div id="sabado" style="display:none">
+      <h2>06/12/2025 - SÁBADO</h2>
+      <h3>WARM-UP</h3>
+      <p>3:00 Machine<br>-into-<br>9:00 AMRAP<br>4 Lunge Matrix<br>10-second Handstand Hold<br>4 Wall Balls (light)<br>2x50ft Shuttle Run<br>4 Hang Muscle Cleans (empty bar)</p>
+      <h3>CUSTOM METCON - Snow Miser</h3>
+      <p>Every 1:00 (24:00)<br>Minute 1 → 20 Wall Balls (20/14)<br>Minute 2 → 15ft Handstand Walk (or 2 Wall Walks)<br>Minute 3 → 8x50ft Shuttle Runs<br>Minute 4 → 5 Hang Power Cleans (85/58)</p>
+      <h3>ACCESORIO</h3>
+      <p>3 sets<br>10 Weighted Pull-Ups (or Banded Strict) @ RPE 7/10<br>12 Dumbbell Lateral Raises @ RPE 7/10<br>-rest 90 sec-<br>15 Banded Pull Aparts @ RPE 5/10<br>-rest 1:00 between sets-</p>
+    </div>
+
+    <div id="domingo" style="display:none">
+      <h2>07/12/2025 - DOMINGO (CREADO POR GROK)</h2>
+      <h3>ACTIVE RECOVERY / HERO WOD</h3>
+      <p>“Rudolph’s Revenge”<br>For time (30 min cap):<br>800m Run<br>50 Burpee Box Jump Overs (24/20)<br>40 Clean & Jerks (60/40 kg)<br>30 Ring Muscle-Ups<br>20 Snatches (70/48 kg)<br>10 Rope Climbs (15ft)<br>800m Run<br><br>Scale: Burpee Step-Overs // Bar Muscle-Ups // Power Snatches // 3-5 Pull-Ups + 3-5 Dips per Rope Climb</p>
+    </div>
+
+    <div class="reloj" id="clock"></div>
+  </div>
+</div>
+
+<script>
+function updateClock() {
+  const now = new Date();
+  const time = now.toLocaleTimeString('es-BO', {hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false});
+  document.getElementById('clock').innerText = time;
+  document.getElementById('hoy').innerText = now.toLocaleDateString('es-BO', {weekday:'long', day:'2-digit', month:'long', year:'numeric'}).toUpperCase();
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+const today = new Date().getDay(); // 0=domingo, 1=lunes...
+const divs = ['domingo','lunes','martes','miercoles','jueves','viernes','sabado'];
+document.getElementById(divs[today]).style.display = 'block';
+</script>
+</body>
+</html>
