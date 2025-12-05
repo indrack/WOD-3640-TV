@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>WOD Vertical 50" Full</title>
+  <title>WOD Vertical 50" - Final</title>
   <style>
     /* --- RESET BÁSICO --- */
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -22,13 +22,9 @@
       position: absolute;
       top: 50%; 
       left: 50%;
-      
-      /* IMPORTANTE: Definimos el tamaño basándonos en viewport units inversos */
-      /* El ancho del bloque es la altura de la ventana (100vh) */
-      /* La altura del bloque es el ancho de la ventana (100vw) */
+      /* Dimensiones invertidas para el giro */
       width: 100vh;  
       height: 100vw; 
-      
       transform: translate(-50%, -50%) rotate(-90deg);
       
       display: flex;
@@ -36,43 +32,64 @@
       justify-content: center; 
       align-items: center;
       background: #000;
+      position: relative; /* Necesario para el logo absoluto */
+    }
+
+    /* --- LOGO --- */
+    .bg-logo {
+      position: absolute;
+      /* AJUSTE DE POSICIÓN (Esquina Visual Superior Izquierda) */
+      /* Debido a la rotación -90deg: 
+         - top: aleja del borde izquierdo visual.
+         - right: aleja del borde superior visual. */
+      top: 40px;    
+      right: 40px;  
+      
+      /* TAMAÑO Y ESTILO */
+      width: 200px; /* Ajusta este valor si lo ves muy chico o grande */
+      height: auto;
+      opacity: 0.8; /* Transparencia (1 es sólido, 0.5 es medio transparente) */
+      
+      z-index: 0; /* Detrás del texto */
+      pointer-events: none;
     }
 
     /* Contenedor interno */
     .content-wrapper {
-      /* CAMBIO CLAVE: Usamos 96vh que equivale al 96% del ANCHO FÍSICO del TV.
-         Esto evita que el texto se rompa en dos líneas innecesariamente. */
+      /* Usamos el 96% del ancho físico disponible */
       width: 96vh; 
-      
       display: flex;
       flex-direction: column;
-      justify-content: center; /* Centrado por defecto, JS lo cambiará si es necesario */
+      justify-content: center; 
       align-items: center;
       text-align: center;
       height: auto;
       transform-origin: center center;
+      
+      position: relative;
+      z-index: 10; /* Texto siempre encima del logo */
     }
 
     /* --- TIPOGRAFÍA --- */
     h3 {
-      font-size: 3.2em; /* Un poco más grande para aprovechar el ancho */
+      font-size: 3.2em; 
       color: #ff0000; 
       margin: 0.4em 0 0.15em 0;
       text-transform: uppercase;
       border-bottom: 3px solid #333;
       display: inline-block;
       text-shadow: 0px 0px 15px rgba(255, 0, 0, 0.5);
-      white-space: nowrap; /* Intenta obligar al título a estar en 1 línea */
+      white-space: nowrap; /* Títulos en una sola línea */
     }
 
     p {
       font-size: 2.3em; 
-      line-height: 1.25; /* Líneas un poco más pegadas para ganar espacio vertical */
+      line-height: 1.25; 
       color: #f0f0f0;
       white-space: pre-line;
       margin-bottom: 0.5em;
       font-weight: 400;
-      width: 100%; /* Asegura que use todo el ancho disponible */
+      width: 100%; 
     }
 
     /* --- MÓVIL (DEBUG) --- */
@@ -86,6 +103,13 @@
         padding: 20px;
         display: block;
       }
+      .bg-logo {
+        position: static;
+        display: block;
+        margin: 0 auto 20px auto;
+        width: 120px;
+        opacity: 1;
+      }
       .content-wrapper { width: 100%; transform: none !important; }
       h3 { font-size: 24px; white-space: normal; }
       p { font-size: 16px; }
@@ -95,6 +119,10 @@
 <body>
 
 <div class="tv-container">
+  
+  <!-- LOGO ACTUALIZADO -->
+  <img src="logo.png" class="bg-logo" alt="Logo CrossFit 3640">
+
   <div class="content-wrapper" id="wod-display">
     <!-- El WOD se carga aquí -->
   </div>
@@ -111,9 +139,9 @@ const wods = {
   
   miercoles: `<h3>WARM-UP</h3><p>8:00 AMRAP<br>Run 100m • 10 Alt V-Ups<br>Barbell Warmup</p><h3>WEIGHTLIFTING</h3><p>Snatch<br>5 sets x 2 reps @ 75-80%<br>(Every 2:00)</p><h3>METCON - Winter Warlock</h3><p>2:00 ON / 1:00 OFF<br>400m Run<br>12 Alt DB Snatch<br>Max Burpees over DB<br>*(Target: 75 Burpees)*</p>`,
   
-  jueves: `<h3>WARM-UP</h3><p>10:00 AMRAP<br>30s Machine <br> 30s Jump Rope<br>Dynamic Stretching</p><h3>METCON <br> Bumble</h3><p>Every 2:00 (8 sets)<br>15 Air Squats<br>50 Double Unders<br>15 Air Squats</p><h3>ACCESORIO</h3><p>3 sets "Shock Method"<br>6 Bench Press (Heavy)<br>12 Push-Ups<br>25 DB Fly (Light)<br>Rest 2:00</p>`,
+  viernes: `<h3>WARM-UP</h3><p>10:00 AMRAP<br>30s Machine <br> 30s Jump Rope<br>Dynamic Stretching</p><h3>METCON <br> Bumble</h3><p>Every 2:00 (8 sets)<br>15 Air Squats<br>50 Double Unders<br>15 Air Squats</p><h3>ACCESORIO</h3><p>3 sets "Shock Method"<br>6 Bench Press (Heavy)<br>12 Push-Ups<br>25 DB Fly (Light)<br>Rest 2:00</p>`,
   
-  viernes: `<h3>WARM-UP</h3><p>2:00 Machine<br>-into-<br>8:00 AMRAP<br>10 Banded Good Mornings<br>10 Banded Shoulder Press<br>10 Deadbugs<br>5 Deadlifts (empty bar)<br>5 Kip Swings<br>5 Hanging Knee Raises</p><h3>GYMNASTICS (Handstand Walk)</h3><p>HANDSTAND/GRIP (WEEK 6)<br>7-minute AMRAP<br>Ascending ladder 1-2-3-4-5-6...<br><br><strong>Level 1:</strong> Box Pike to Hollow Plank Shoulder Taps [R/L =1 rep]<br>After EVERY round: 100ft Farmers Carry [35s/25s] (KG: 15/10)<br><br><strong>Level 2:</strong> Walk Walk Plank Shoulder Taps [R/L =1 rep]<br>After EVERY round: 100ft Farmers Carry [50s/35s] (KG: 22.5/15)<br><br><strong>Level 3:</strong> Walk Walk + Shoulder Taps [R/L =1 rep]<br>After EVERY round: 100ft Farmers Carry [70s/50s] (KG: 32.5/22.5)</p><h3>METCON - Yukon Cornelius</h3><p>3 Rounds<br>7 Deadlifts (125/85)<br>14 Handstand Push Ups<br>21 Toes to Bar</p>`,
+  jueves: `<h3>WARM-UP</h3><p>2:00 Machine<br>-into-<br>8:00 AMRAP<br>10 Banded Good Mornings<br>10 Banded Shoulder Press<br>10 Deadbugs<br>5 Deadlifts (empty bar)<br>5 Kip Swings<br>5 Hanging Knee Raises</p><h3>GYMNASTICS (Handstand Walk)</h3><p>HANDSTAND/GRIP (WEEK 6)<br>7-minute AMRAP<br>Ascending ladder 1-2-3-4-5-6...<br><br><strong>Level 1:</strong> Box Pike to Hollow Plank Shoulder Taps [R/L =1 rep]<br>After EVERY round: 100ft Farmers Carry [35s/25s] (KG: 15/10)<br><br><strong>Level 2:</strong> Walk Walk Plank Shoulder Taps [R/L =1 rep]<br>After EVERY round: 100ft Farmers Carry [50s/35s] (KG: 22.5/15)<br><br><strong>Level 3:</strong> Walk Walk + Shoulder Taps [R/L =1 rep]<br>After EVERY round: 100ft Farmers Carry [70s/50s] (KG: 32.5/22.5)</p><h3>METCON - Yukon Cornelius</h3><p>3 Rounds<br>7 Deadlifts (125/85)<br>14 Handstand Push Ups<br>21 Toes to Bar</p>`,
   
   sabado: `<h3>WARM-UP</h3><p>9:00 AMRAP<br>Lunge Matrix • HS Hold<br>Wall Balls • Shuttle Run</p><h3>METCON - Snow Miser</h3><p>EMOM 24 min<br>1: 20 Wall Balls<br>2: 15ft HS Walk<br>3: 8x50ft Shuttle Run<br>4: 5 Hang Power Cleans (Heavy)</p><h3>ACCESORIO</h3><p>3 sets Bodybuilding<br>Pull-Ups • Lateral Raises</p>`
 };
@@ -142,9 +170,7 @@ function ajustarEscalaPerfecta() {
   wrapper.style.justifyContent = 'center';
   
   // 2. Dimensiones
-  // La altura disponible es el ANCHO del navegador (por la rotación)
   const alturaDisponible = window.innerWidth; 
-  // Restamos muy poco margen (2%) para aprovechar al máximo
   const margenSeguro = alturaDisponible * 0.02; 
   
   const alturaContenido = wrapper.scrollHeight;
@@ -153,20 +179,15 @@ function ajustarEscalaPerfecta() {
   // 3. Calculamos Escala
   let escala = alturaTarget / alturaContenido;
   
-  // Límite máximo: No escalar más de 1.5x (letras gigantes innecesarias)
-  // Límite mínimo: 0.5x
   if (escala > 1.5) escala = 1.5;
   if (escala < 0.5) escala = 0.5;
 
   // 4. Aplicar
   wrapper.style.transform = `scale(${escala})`;
 
-  // 5. Distribución Inteligente
-  // Si sobra mucho espacio (WOD corto), esparcir el contenido para que se vea elegante
-  // Si falta espacio (WOD largo), mantenerlo compacto.
   if (escala >= 1) {
-    wrapper.style.height = (alturaContenido) + "px"; // Fijar altura original
-    wrapper.style.justifyContent = 'space-evenly'; // Distribuir
+    wrapper.style.height = (alturaContenido) + "px"; 
+    wrapper.style.justifyContent = 'space-evenly'; 
   } else {
     wrapper.style.height = "auto";
     wrapper.style.justifyContent = 'center';
