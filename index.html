@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>WOD Vertical 50"</title>
+  <title>WOD Vertical 50" Full</title>
   <style>
     /* --- RESET BÁSICO --- */
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -13,40 +13,40 @@
       height: 100vh;
       background: #000; 
       color: #fff; 
-      overflow: hidden; /* Cero scrollbars */
+      overflow: hidden; 
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
     }
 
     /* --- CONTENEDOR PRINCIPAL ROTADO --- */
-    /* 
-       La magia: Forzamos al contenedor a tener las dimensiones INVERTIDAS del navegador.
-       Si el navegador es 1920x1080, el contenedor será 1080x1920.
-    */
     .tv-container {
       position: absolute;
       top: 50%; 
       left: 50%;
-      width: 100vh;  /* El ancho será la altura del navegador */
-      height: 100vw; /* La altura será el ancho del navegador */
       
-      /* ROTACIÓN: -90deg o 90deg dependiendo de hacia dónde giraste la TV.
-         Prueba cambiar a 90deg si queda de cabeza. */
+      /* IMPORTANTE: Definimos el tamaño basándonos en viewport units inversos */
+      /* El ancho del bloque es la altura de la ventana (100vh) */
+      /* La altura del bloque es el ancho de la ventana (100vw) */
+      width: 100vh;  
+      height: 100vw; 
+      
       transform: translate(-50%, -50%) rotate(-90deg);
       
       display: flex;
       flex-direction: column;
-      justify-content: center; /* Se ajustará por JS */
+      justify-content: center; 
       align-items: center;
       background: #000;
     }
 
-    /* Contenedor interno que escala */
+    /* Contenedor interno */
     .content-wrapper {
-      width: 95%; /* Usamos casi todo el ancho vertical */
+      /* CAMBIO CLAVE: Usamos 96vh que equivale al 96% del ANCHO FÍSICO del TV.
+         Esto evita que el texto se rompa en dos líneas innecesariamente. */
+      width: 96vh; 
+      
       display: flex;
       flex-direction: column;
-      /* Esto distribuye el contenido uniformemente si sobra espacio */
-      justify-content: space-evenly; 
+      justify-content: center; /* Centrado por defecto, JS lo cambiará si es necesario */
       align-items: center;
       text-align: center;
       height: auto;
@@ -54,28 +54,26 @@
     }
 
     /* --- TIPOGRAFÍA --- */
-    /* Usamos unidades relativas para que escalen con el zoom */
     h3 {
-      font-size: 3em; 
-      color: #ff0000; /* Rojo Crossfit */
-      margin: 0.5em 0 0.2em 0;
+      font-size: 3.2em; /* Un poco más grande para aprovechar el ancho */
+      color: #ff0000; 
+      margin: 0.4em 0 0.15em 0;
       text-transform: uppercase;
       border-bottom: 3px solid #333;
       display: inline-block;
-      text-shadow: 0px 0px 10px rgba(255, 0, 0, 0.6);
+      text-shadow: 0px 0px 15px rgba(255, 0, 0, 0.5);
+      white-space: nowrap; /* Intenta obligar al título a estar en 1 línea */
     }
 
     p {
-      font-size: 2.2em; 
-      line-height: 1.3;
+      font-size: 2.3em; 
+      line-height: 1.25; /* Líneas un poco más pegadas para ganar espacio vertical */
       color: #f0f0f0;
       white-space: pre-line;
       margin-bottom: 0.5em;
       font-weight: 400;
+      width: 100%; /* Asegura que use todo el ancho disponible */
     }
-
-    /* Negritas dentro de los párrafos si las hubiera */
-    strong { color: #fff; font-weight: 700; }
 
     /* --- MÓVIL (DEBUG) --- */
     @media (orientation: portrait) {
@@ -89,7 +87,7 @@
         display: block;
       }
       .content-wrapper { width: 100%; transform: none !important; }
-      h3 { font-size: 24px; }
+      h3 { font-size: 24px; white-space: normal; }
       p { font-size: 16px; }
     }
   </style>
@@ -126,56 +124,52 @@ function cargarWOD() {
   const hoyIndex = new Date().getDay();
   const diaNombre = dias[hoyIndex];
   const contenedor = document.getElementById('wod-display');
-  
-  // Forzar actualización para pruebas (puedes quitar esto en producción)
-  // const diaNombre = 'jueves'; 
 
   if (contenedor.dataset.dia !== diaNombre) {
     contenedor.innerHTML = wods[diaNombre] || "<h3>DESCANSO</h3><p>Box Cerrado / Open Box</p>";
     contenedor.dataset.dia = diaNombre;
-    
-    // Esperamos un poco para que el DOM renderice antes de calcular matemáticas
     setTimeout(ajustarEscalaPerfecta, 50); 
   }
 }
 
 function ajustarEscalaPerfecta() {
-  if (window.matchMedia("(orientation: portrait)").matches) return; // No hacer nada en celular vertical
+  if (window.matchMedia("(orientation: portrait)").matches) return; 
 
   const wrapper = document.getElementById('wod-display');
-  const container = document.querySelector('.tv-container');
   
-  // 1. Reseteamos para medir tamaño natural
+  // 1. Reset
   wrapper.style.transform = 'scale(1)';
-  wrapper.style.height = 'auto'; // Dejar que crezca naturalmente
+  wrapper.style.justifyContent = 'center';
   
-  // 2. Obtenemos dimensiones
-  // En modo rotado: el ancho disponible es la altura de la ventana
-  const alturaDisponible = window.innerWidth; // Es width porque está rotado
-  const margenSeguridad = 40; // Pixeles de margen
+  // 2. Dimensiones
+  // La altura disponible es el ANCHO del navegador (por la rotación)
+  const alturaDisponible = window.innerWidth; 
+  // Restamos muy poco margen (2%) para aprovechar al máximo
+  const margenSeguro = alturaDisponible * 0.02; 
   
   const alturaContenido = wrapper.scrollHeight;
+  const alturaTarget = alturaDisponible - margenSeguro;
   
-  // 3. Calculamos el Factor de Escala
-  // Queremos llenar la pantalla, pero sin pasarnos.
-  let escala = (alturaDisponible - margenSeguridad) / alturaContenido;
+  // 3. Calculamos Escala
+  let escala = alturaTarget / alturaContenido;
   
-  // Limites de seguridad: No hacer la letra microscópica ni gigantesca absurda
-  if (escala > 2.5) escala = 2.5; 
+  // Límite máximo: No escalar más de 1.5x (letras gigantes innecesarias)
+  // Límite mínimo: 0.5x
+  if (escala > 1.5) escala = 1.5;
   if (escala < 0.5) escala = 0.5;
 
-  console.log(`Altura Disp: ${alturaDisponible}, Altura Cont: ${alturaContenido}, Escala: ${escala}`);
-
-  // 4. Aplicar escala
+  // 4. Aplicar
   wrapper.style.transform = `scale(${escala})`;
-  
-  // 5. Centrado Vertical Fino
-  // Si escalamos hacia abajo, puede quedar espacio visible. 
-  // Expandimos el contenedor interno para que el flexbox 'space-evenly' funcione visualmente si es necesario
-  if (escala > 1) {
-     // Si estamos agrandando, genial.
+
+  // 5. Distribución Inteligente
+  // Si sobra mucho espacio (WOD corto), esparcir el contenido para que se vea elegante
+  // Si falta espacio (WOD largo), mantenerlo compacto.
+  if (escala >= 1) {
+    wrapper.style.height = (alturaContenido) + "px"; // Fijar altura original
+    wrapper.style.justifyContent = 'space-evenly'; // Distribuir
   } else {
-     // Si estamos achicando, nos aseguramos que esté centrado
+    wrapper.style.height = "auto";
+    wrapper.style.justifyContent = 'center';
   }
 }
 
