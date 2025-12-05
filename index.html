@@ -4,148 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>WOD Vertical 50" - Final</title>
-  <style>
-    /* --- RESET BÁSICO --- */
-    * { margin:0; padding:0; box-sizing:border-box; }
-    
-    body, html { 
-      width: 100vw;
-      height: 100vh;
-      background: #000; 
-      color: #fff; 
-      overflow: hidden; 
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
-    }
-
-    /* --- CONTENEDOR PRINCIPAL ROTADO --- */
-    .tv-container {
-      position: absolute;
-      top: 50%; 
-      left: 50%;
-      width: 100vh;  
-      height: 100vw; 
-      /* Tu rotación actual */
-      transform: translate(-50%, -50%) rotate(-90deg);
-      
-      display: flex;
-      flex-direction: column;
-      justify-content: center; 
-      align-items: center;
-      background: #000;
-      position: relative; 
-    }
-
-    /* --- 1. LOGO (Esquina Superior Izquierda Visual) --- */
-    .bg-logo {
-      position: absolute;
-      /* En rotación +90deg: 'right' es el borde superior visual, 'top' es el borde izquierdo visual */
-      top: 40px;    
-      right: 40px;  
-      
-      width: 150px; 
-      height: auto;
-      opacity: 0.5; 
-      z-index: 0; 
-      pointer-events: none;
-    }
-
-    /* --- 2. RELOJ Y FECHA (Esquina Superior Derecha Visual) --- */
-    .datetime-container {
-      position: absolute;
-      /* En rotación +90deg: 
-         - 'right' es el borde SUPERIOR visual.
-         - 'bottom' es el borde DERECHO visual. 
-      */
-      left: 10px;   /* Pegado arriba visualmente */
-      top: 10px;  /* Pegado a la derecha visualmente */
-      
-      text-align: left; /* Alinea los números a la derecha */
-      z-index: 5;
-      font-family: 'Courier New', Courier, monospace; /* Fuente estilo digital */
-      pointer-events: none;
-      
-      /* AJUSTES GLOBALES DEL RELOJ */
-      opacity: 0.7; /* Opacidad del conjunto */
-    }
-
-    #date-display {
-      font-size: 1.3em; /* Tamaño de la fecha */
-      color: #fff;      /* Color fecha (blanco se lee mejor pequeño) */
-      font-weight: bold;
-      margin-bottom: 5px;
-      opacity: 0.8;
-    }
-
-    #time-display {
-      font-size: 2.7em; /* Tamaño de la hora */
-      color: #39ff14;   /* VERDE NEÓN */
-      font-weight: bold;
-      line-height: 0.9;
-      /* Efecto de brillo de neón */
-      text-shadow: 0 0 10px rgba(57, 255, 20, 0.6), 0 0 20px rgba(57, 255, 20, 0.4);
-      opacity: 0.8;
-    }
-
-    /* --- CONTENIDO WOD --- */
-    .content-wrapper {
-      width: 96vh; 
-      display: flex;
-      flex-direction: column;
-      justify-content: center; 
-      align-items: center;
-      text-align: center;
-      height: auto;
-      transform-origin: center center;
-      position: relative;
-      z-index: 10; 
-    }
-
-    /* --- TIPOGRAFÍA --- */
-    h3 {
-      font-size: 3.2em; 
-      color: #ff0000; 
-      margin: 0.4em 0 0.15em 0;
-      text-transform: uppercase;
-      border-bottom: 3px solid #333;
-      display: inline-block;
-      text-shadow: 0px 0px 15px rgba(255, 0, 0, 0.5);
-      white-space: nowrap; 
-    }
-
-    p {
-      font-size: 2.3em; 
-      line-height: 1.25; 
-      color: #f0f0f0;
-      white-space: pre-line;
-      margin-bottom: 0.5em;
-      font-weight: 400;
-      width: 100%; 
-    }
-
-    /* --- MÓVIL (DEBUG) --- */
-    @media (orientation: portrait) {
-      body, html { overflow: auto; height: auto; }
-      .tv-container {
-        position: static; width: 100%; height: auto; transform: none; padding: 20px; display: block;
-      }
-      .bg-logo {
-        position: static; display: block; margin: 0 auto 20px auto; width: 120px; opacity: 1;
-      }
-      .datetime-container {
-        position: static; text-align: center; margin-bottom: 20px; right: auto; bottom: auto;
-      }
-      #time-display { font-size: 40px; }
-      .content-wrapper { width: 100%; transform: none !important; }
-      h3 { font-size: 24px; white-space: normal; }
-      p { font-size: 16px; }
-    }
-  </style>
+  
+  <!-- Enlaze al estilo -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="tv-container">
   
   <!-- 1. LOGO -->
+  
   <img src="logo.png" class="bg-logo" alt="Logo CrossFit">
 
   <!-- 2. FECHA Y HORA -->
@@ -155,102 +23,13 @@
   </div>
 
   <div class="content-wrapper" id="wod-display">
-    <!-- El WOD se carga aquí -->
+    <!-- El WOD se carga aquí mediante JS -->
   </div>
 </div>
 
-<script>
-// --- RELOJ DIGITAL ---
-function updateClock() {
-  const now = new Date();
-  
-  // Formato Fecha: DD/MM/AAAA
-  const dia = String(now.getDate()).padStart(2, '0');
-  const mes = String(now.getMonth() + 1).padStart(2, '0');
-  const anio = now.getFullYear();
-  document.getElementById('date-display').innerText = `${dia}/${mes}/${anio}`;
+<!-- IMPORTANTE: Cargar primero los datos, luego la lógica -->
+<script src="wods.js"></script>
+<script src="script.js"></script>
 
-  // Formato Hora: HH:MM:SS
-  const horas = String(now.getHours()).padStart(2, '0');
-  const min = String(now.getMinutes()).padStart(2, '0');
-  const seg = String(now.getSeconds()).padStart(2, '0');
-  document.getElementById('time-display').innerText = `${horas}:${min}:${seg}`;
-}
-// Iniciar reloj inmediatamente y actualizar cada segundo
-setInterval(updateClock, 1000);
-updateClock();
-
-
-// --- DATA WODS ---
-const wods = {
-  domingo: `<h3>DOMINGO - Rudolph’s Revenge</h3><p>For time (30 min cap):<br>800m Run<br>50 Burpee Box Jump Overs (24/20)<br>40 Clean & Jerks (60/40 kg)<br>30 Ring Muscle-Ups<br>20 Snatches (70/48 kg)<br>10 Rope Climbs (15ft)<br>800m Run</p>`,
-  
-  lunes: `<h3>WARM-UP</h3><p>8:00 AMRAP<br>30s Row Easy • 10 Bird Dogs<br>10 Deadbugs • 5 Inchworms</p><h3>STRENGTH - Press</h3><p>5 sets x 6 Reps<br>Shoulder Press (Heavy)</p><h3>METCON - Jack Frost</h3><p>EMOM 16 min<br>1: 15/12 Cal Row<br>2: 15 Thrusters (75/55)<br>3: 15 C2B Pull-Ups<br>4: Rest</p>`,
-  
-  martes: `<h3>WARM-UP</h3><p>10:00 AMRAP<br>1:00 Cardio • 10 Sit-Ups<br>10 Box Step-Ups</p><h3>METCON - Hermey</h3><p>For Time:<br>25 Box Step-Ups<br>50 Sit-Ups<br>25 Box Jumps<br>50 V-Ups<br>25 Box Jump Overs<br>50 Sit-Ups<br>25 Step-Ups</p><h3>ACCESORIO</h3><p>4 sets:<br>30s Wall Sit<br>20 Split Lunge</p>`,
-  
-  miercoles: `<h3>WARM-UP</h3><p>8:00 AMRAP<br>Run 100m • 10 Alt V-Ups<br>Barbell Warmup</p><h3>WEIGHTLIFTING</h3><p>Snatch<br>5 sets x 2 reps @ 75-80%<br>(Every 2:00)</p><h3>METCON - Winter Warlock</h3><p>2:00 ON / 1:00 OFF<br>400m Run<br>12 Alt DB Snatch<br>Max Burpees over DB<br>*(Target: 75 Burpees)*</p>`,
-  
-  jueves: `<h3>WARM-UP</h3><p>10:00 AMRAP<br>30s Machine <br> 30s Jump Rope<br>Dynamic Stretching</p><h3>METCON <br> Bumble</h3><p>Every 2:00 (8 sets)<br>15 Air Squats<br>50 Double Unders<br>15 Air Squats</p><h3>ACCESORIO</h3><p>3 sets "Shock Method"<br>6 Bench Press (Heavy)<br>12 Push-Ups<br>25 DB Fly (Light)<br>Rest 2:00</p>`,
-  
-  viernes: `<h3>WARM-UP</h3><p>2:00 Machine<br>-into-<br>8:00 AMRAP<br>10 Banded Good Mornings<br>10 Banded Shoulder Press<br>10 Deadbugs<br>5 Deadlifts (empty bar)<br>5 Kip Swings<br>5 Hanging Knee Raises</p><h3>GYMNASTICS (Handstand Walk)</h3><p>HANDSTAND/GRIP (WEEK 6)<br>7-minute AMRAP<br>Ascending ladder 1-2-3-4-5-6...<br><br><strong>Level 1:</strong> Box Pike to Hollow Plank Shoulder Taps [R/L =1 rep]<br>After EVERY round: 100ft Farmers Carry [35s/25s] (KG: 15/10)<br><br><strong>Level 2:</strong> Walk Walk Plank Shoulder Taps [R/L =1 rep]<br>After EVERY round: 100ft Farmers Carry [50s/35s] (KG: 22.5/15)<br><br><strong>Level 3:</strong> Walk Walk + Shoulder Taps [R/L =1 rep]<br>After EVERY round: 100ft Farmers Carry [70s/50s] (KG: 32.5/22.5)</p><h3>METCON - Yukon Cornelius</h3><p>3 Rounds<br>7 Deadlifts (125/85)<br>14 Handstand Push Ups<br>21 Toes to Bar</p>`,
-  
-  sabado: `<h3>WARM-UP</h3><p>9:00 AMRAP<br>Lunge Matrix • HS Hold<br>Wall Balls • Shuttle Run</p><h3>METCON - Snow Miser</h3><p>EMOM 24 min<br>1: 20 Wall Balls<br>2: 15ft HS Walk<br>3: 8x50ft Shuttle Run<br>4: 5 Hang Power Cleans (Heavy)</p><h3>ACCESORIO</h3><p>3 sets Bodybuilding<br>Pull-Ups • Lateral Raises</p>`
-};
-
-const dias = ['domingo','lunes','martes','miercoles','jueves','viernes','sabado'];
-
-function cargarWOD() {
-  const hoyIndex = new Date().getDay();
-  const diaNombre = dias[hoyIndex];
-  const contenedor = document.getElementById('wod-display');
-
-  if (contenedor.dataset.dia !== diaNombre) {
-    contenedor.innerHTML = wods[diaNombre] || "<h3>DESCANSO</h3><p>Box Cerrado / Open Box</p>";
-    contenedor.dataset.dia = diaNombre;
-    setTimeout(ajustarEscalaPerfecta, 50); 
-  }
-}
-
-function ajustarEscalaPerfecta() {
-  if (window.matchMedia("(orientation: portrait)").matches) return; 
-
-  const wrapper = document.getElementById('wod-display');
-  
-  // 1. Reset
-  wrapper.style.transform = 'scale(1)';
-  wrapper.style.justifyContent = 'center';
-  
-  // 2. Dimensiones
-  const alturaDisponible = window.innerWidth; 
-  const margenSeguro = alturaDisponible * 0.02; 
-  
-  const alturaContenido = wrapper.scrollHeight;
-  const alturaTarget = alturaDisponible - margenSeguro;
-  
-  // 3. Calculamos Escala
-  let escala = alturaTarget / alturaContenido;
-  
-  if (escala > 1.5) escala = 1.5;
-  if (escala < 0.5) escala = 0.5;
-
-  // 4. Aplicar
-  wrapper.style.transform = `scale(${escala})`;
-
-  if (escala >= 1) {
-    wrapper.style.height = (alturaContenido) + "px"; 
-    wrapper.style.justifyContent = 'space-evenly'; 
-  } else {
-    wrapper.style.height = "auto";
-    wrapper.style.justifyContent = 'center';
-  }
-}
-
-// Inicializar
-window.addEventListener('load', cargarWOD);
-window.addEventListener('resize', () => setTimeout(ajustarEscalaPerfecta, 100));
-setInterval(cargarWOD, 60000); 
-
-</script>
 </body>
 </html>
