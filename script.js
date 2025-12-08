@@ -20,7 +20,7 @@ setInterval(updateClock, 1000);
 updateClock();
 
 // --- LÓGICA DE CARGA Y ESCALADO ---
-const dias = ['lunes','martes','miercoles','jueves','viernes','sabado','domingo'];
+const dias = ['domingo','lunes','martes','miercoles','jueves','viernes','sabado'];
 
 function cargarWOD() {
   // Verificación de seguridad
@@ -76,3 +76,4 @@ window.addEventListener('load', cargarWOD);
 window.addEventListener('resize', () => setTimeout(ajustarEscalaPerfecta, 100));
 
 setInterval(cargarWOD, 60000);
+
