@@ -1,7 +1,7 @@
 // --- DATOS DE LOS WODS ---
 const wods = {
   // ---------------------- DOMINGO -------------------
-  lunes: `<h3>DOMINGO - Rudolph’s Revenge</h3>
+ domingo: `<h3>DOMINGO - Rudolph’s Revenge</h3>
 <p>For time (30 min cap):<br>
 800m Run<br>
 50 Burpee Box Jump Overs (24/20″)<br>
@@ -11,7 +11,7 @@ const wods = {
 10 Rope Climbs (15ft)<br>
 800m Run</p>`,
 // ---------------------- lUNES ------------------------
-  domingo: `<h3>WARM-UP</h3>
+lunes: `<h3>WARM-UP</h3>
 <p>8:00 AMRAP<br>
 30 sec Cardio (Row/Bike/Run/Ski)<br>
 10 PVC Pass-Throughs<br>
@@ -37,7 +37,7 @@ Build in sets based on feel</p>
 <br>
 — Rest until 10:00, then repeat —</p>`,
 // --------------------------- MARTES -----------------------------
-  martes: `<h3>WARM-UP</h3>
+martes: `<h3>WARM-UP</h3>
 <p>10:00 AMRAP<br>
 1:00 Cardio Choice<br>
 10 Sit-Ups<br>
@@ -59,7 +59,7 @@ Build in sets based on feel</p>
 20 Alternating Split Lunges (10/leg)<br>
 Rest as needed</p>`,
 // --------------------------------- MIERCOLES -------------------------------------
-  miercoles: `<h3>WARM-UP</h3>
+miercoles: `<h3>WARM-UP</h3>
 <p>8:00 AMRAP<br>
 100m Run<br>
 10 Alternating V-Ups<br>
@@ -76,6 +76,8 @@ Barbell Warm-up (empty bar)</p>
 12 Alternating DB Snatch<br>
 Max Burpees over DB in remaining time<br>
 *(Target: 75 total burpees)*</p>`,
+
+
 // ----------------------------------- JUEVES -----------------------------------------
   jueves: `<h3>WARM-UP</h3>
 <p>10:00 AMRAP<br>
@@ -143,3 +145,4 @@ Min 4 → 5 Hang Power Cleans (Heavy)</p>
 15-20 Lateral Raises (light)<br>
 — Rest 90-120 sec between sets —</p>`
 };
+
