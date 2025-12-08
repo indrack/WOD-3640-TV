@@ -1,7 +1,7 @@
 // --- DATOS DE LOS WODS ---
 const wods = {
   // ---------------------- DOMINGO -------------------
- domingo: `<h3>DOMINGO - Rudolph’s Revenge</h3>
+ lunes: `<h3>DOMINGO - Rudolph’s Revenge</h3>
 <p>For time (30 min cap):<br>
 800m Run<br>
 50 Burpee Box Jump Overs (24/20″)<br>
@@ -11,7 +11,7 @@ const wods = {
 10 Rope Climbs (15ft)<br>
 800m Run</p>`,
 // ---------------------- lUNES ------------------------
-lunes: `<h3>WARM-UP</h3>
+domingo: `<h3>WARM-UP</h3>
 <p>8:00 AMRAP<br>
 30 sec Cardio (Row/Bike/Run/Ski)<br>
 10 PVC Pass-Throughs<br>
@@ -145,4 +145,5 @@ Min 4 → 5 Hang Power Cleans (Heavy)</p>
 15-20 Lateral Raises (light)<br>
 — Rest 90-120 sec between sets —</p>`
 };
+
 
