@@ -45,7 +45,7 @@ Build in sets based on feel</p>
 400m Run<br>
 25 Chest to Bar Pull-ups<br>
 <br>
-— Rest until 10:00, then repeat —</p>`,
+— Rest until 10:00, then repeat —<br></p>`,
 
 // ----------------------------------- MARTES ------------------------------------------------
   martes: `<h3>WARM-UP</h3>
@@ -170,4 +170,5 @@ Power Cleans (85/57.5)<br>
 -rest 1 minute between sets</p>`
 
 };
+
 
