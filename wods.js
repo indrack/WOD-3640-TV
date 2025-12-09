@@ -12,7 +12,7 @@ const wods = {
 5 Empty Bar Hang Muscle Cleans<br>
 5 Empty Bar Front Squats<br>
 8 Ring Rows<br>
-5 Scap Pull Ups<br>
+5 Scap Pull Ups
 <br>
 — into —<br>
 3 sets:<br>
@@ -47,3 +47,4 @@ Build in sets based on feel</p>
   sabado: `<h3>WARM-UP</h3><p>9:00 AMRAP<br>Lunge Matrix • HS Hold<br>Wall Balls • Shuttle Run</p><h3>METCON - Snow Miser</h3><p>EMOM 24 min<br>1: 20 Wall Balls<br>2: 15ft HS Walk<br>3: 8x50ft Shuttle Run<br>4: 5 Hang Power Cleans (Heavy)</p><h3>ACCESORIO</h3><p>3 sets Bodybuilding<br>Pull-Ups • Lateral Raises</p>`
  
 };
+
