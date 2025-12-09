@@ -1,9 +1,25 @@
 // --- DATOS DE LOS WODS ---
 const wods = {
- 
+
 // --------------------------------- DOMINGO ------------------------------------
-  domingo: `<h3>DOMINGO - Rudolph’s Revenge</h3><p>For time (30 min cap):<br>800m Run<br>50 Burpee Box Jump Overs (24/20)<br>40 Clean & Jerks (60/40 kg)<br>30 Ring Muscle-Ups<br>20 Snatches (70/48 kg)<br>10 Rope Climbs (15ft)<br>800m Run</p>`,
- 
+  domingo: `<h3>WARM-UP</h3>
+<p>8:00 AMRAP<br>
+30-second Machine<br>
+5 Inchworms to push-up<br>
+10 Scapular Push-Ups<br>
+5 Hand Release Push-Ups<br>
+10 Alternating V-Ups</p>
+
+<h3>CUSTOM METCON</h3>
+<p>Teams of 2<br>
+5 rounds<br>
+Partner 1:<br>
+500/450m Row<br>
+Partner 2:<br>
+50ft Handstand Walk or 4 Wall Walks<br>
+25 V-Ups<br>
+Switch when both stations are completed (Score is Time)</p>`,
+
 // ------------------------------------ LUNES -----------------------------------------------------
   lunes: `<h3>WARM-UP</h3>
 <p>8:00 AMRAP<br>
@@ -12,7 +28,7 @@ const wods = {
 5 Empty Bar Hang Muscle Cleans<br>
 5 Empty Bar Front Squats<br>
 8 Ring Rows<br>
-5 Scap Pull Ups
+5 Scap Pull Ups<br>
 <br>
 — into —<br>
 3 sets:<br>
@@ -30,21 +46,127 @@ Build in sets based on feel</p>
 25 Chest to Bar Pull-ups<br>
 <br>
 — Rest until 10:00, then repeat —</p>`,
- 
-// ----------------------------------- MARTES ------------------------------------------------
-  martes: `<h3>WARM-UP</h3><p>10:00 AMRAP<br>1:00 Cardio • 10 Sit-Ups<br>10 Box Step-Ups</p><h3>METCON - Hermey</h3><p>For Time:<br>25 Box Step-Ups<br>50 Sit-Ups<br>25 Box Jumps<br>50 V-Ups<br>25 Box Jump Overs<br>50 Sit-Ups<br>25 Step-Ups</p><h3>ACCESORIO</h3><p>4 sets:<br>30s Wall Sit<br>20 Split Lunge</p>`,
- 
-// --------------------------------- MIERCOLES --------------------------------------
-  miercoles: `<h3>WARM-UP</h3><p>8:00 AMRAP<br>Run 100m • 10 Alt V-Ups<br>Barbell Warmup</p><h3>WEIGHTLIFTING</h3><p>Snatch<br>5 sets x 2 reps @ 75-80%<br>(Every 2:00)</p><h3>METCON - Winter Warlock</h3><p>2:00 ON / 1:00 OFF<br>400m Run<br>12 Alt DB Snatch<br>Max Burpees over DB<br>*(Target: 75 Burpees)*</p>`,
- 
-// ----------------------------------- JUEVES -----------------------------------------
-  jueves: `<h3>WARM-UP</h3><p>10:00 AMRAP<br>30s Machine <br> 30s Jump Rope<br>Dynamic Stretching</p><h3>METCON <br> Bumble</h3><p>Every 2:00 (8 sets)<br>15 Air Squats<br>50 Double Unders<br>15 Air Squats</p><h3>ACCESORIO</h3><p>3 sets "Shock Method"<br>6 Bench Press (Heavy)<br>12 Push-Ups<br>25 DB Fly (Light)<br>Rest 2:00</p>`,
- 
-// ----------------------------------- VIERNES -------------------------------------
-  viernes: `<h3>WARM-UP</h3><p>2:00 Machine<br>-into-<br>8:00 AMRAP<br>10 Banded Good Mornings<br>10 Banded Shoulder Press<br>10 Deadbugs<br>5 Deadlifts (empty bar)<br>5 Kip Swings<br>5 Hanging Knee Raises</p><h3>GYMNASTICS (Handstand Walk)</h3><p>HANDSTAND/GRIP (WEEK 6)<br>7-minute AMRAP<br>Ascending ladder 1-2-3-4-5-6...<br><br><strong>Level 1:</strong> Box Pike to Hollow Plank Shoulder Taps [R/L =1 rep]<br>After EVERY round: 100ft Farmers Carry [35s/25s] (KG: 15/10)<br><br><strong>Level 2:</strong> Walk Walk Plank Shoulder Taps [R/L =1 rep]<br>After EVERY round: 100ft Farmers Carry [50s/35s] (KG: 22.5/15)<br><br><strong>Level 3:</strong> Walk Walk + Shoulder Taps [R/L =1 rep]<br>After EVERY round: 100ft Farmers Carry [70s/50s] (KG: 32.5/22.5)</p><h3>METCON - Yukon Cornelius</h3><p>3 Rounds<br>7 Deadlifts (125/85)<br>14 Handstand Push Ups<br>21 Toes to Bar</p>`,
- 
-// ---------------------------------- SABADO ---------------------------------------------
-  sabado: `<h3>WARM-UP</h3><p>9:00 AMRAP<br>Lunge Matrix • HS Hold<br>Wall Balls • Shuttle Run</p><h3>METCON - Snow Miser</h3><p>EMOM 24 min<br>1: 20 Wall Balls<br>2: 15ft HS Walk<br>3: 8x50ft Shuttle Run<br>4: 5 Hang Power Cleans (Heavy)</p><h3>ACCESORIO</h3><p>3 sets Bodybuilding<br>Pull-Ups • Lateral Raises</p>`
- 
-};
 
+// ----------------------------------- MARTES ------------------------------------------------
+  martes: `<h3>WARM-UP</h3>
+<p>8:00 AMRAP<br>
+30-second Cardio<br>
+5 Inchworms to push-up<br>
+10 Scapular Push-Ups<br>
+5 Hand Release Push-Ups<br>
+10 Alternating V-Ups</p>
+
+<h3>CUSTOM METCON</h3>
+<p>15:00 AMRAP<br>
+3 Wall Walks<br>
+12 Dumbbell Bench Press (22.5/15)<br>
+15 Abmat Sit Ups</p>
+
+<h3>ACCESORIO</h3>
+<p>8-minute EMOM<br>
+Level 1: Odd minute: 30 seconds of elbow plank hold Even minute: 7-10 Ring Rows<br>
+Level 2: Odd minute: 30 seconds of barbell “ab rollers” Even minute: 1 Rope Climbs (sub 6-8 Strict Chin Ups, if needed)<br>
+Level 3: Odd minute: 30 seconds of barbell “ab rollers” Even minute: 2 Rope Climbs (sub 10 Strict Chin Ups, if needed)</p>`,
+
+// --------------------------------- MIÉRCOLES --------------------------------------
+  miercoles: `<h3>WARM-UP</h3>
+<p>3 Rounds<br>
+10 PVC Pass Throughs<br>
+10 Box Step Ups<br>
+5 Empty Bar Muscle Snatch<br>
+5 Empty Bar Overhead Squats</p>
+
+<h3>CUSTOM METCON</h3>
+<p>2 Rounds<br>
+15 Box Jumps (24/20)<br>
+9 Overhead Squats (52.5/35)<br>
+-rest 1:1-<br>
+2 Rounds<br>
+15 Box Jumps (24/20)<br>
+12 Overhead Squats (42.5/30)<br>
+-rest 1:1-<br>
+2 Rounds<br>
+15 Box Jumps (24/20)<br>
+15 Overhead Squats (35/25)</p>
+
+<h3>ACCESORIO</h3>
+<p>3 sets<br>
+20 Russian Kettlebell Swings @ RPE 7/10<br>
+-rest 30 seconds-<br>
+20 Dumbbell Glute Bridges</p>`,
+
+// ----------------------------------- JUEVES -----------------------------------------
+  jueves: `<h3>WARM-UP</h3>
+<p>8:00 AMRAP<br>
+8 Up Downs<br>
+6 Lunge Matrix<br>
+4x50ft Shuttle Runs<br>
+10 Shoulder Taps<br>
+5/4 Calorie Row</p>
+
+<h3>CUSTOM METCON</h3>
+<p>Teams of 2<br>
+Time cap 24:00<br>
+A Completar<br>
+100/80 Calorie Row<br>
+50x50ft Shuttle Run</p>
+
+<h3>ACCESORIO</h3>
+<p>3-4 sets:<br>
+10 Landmine Press (each) @ Moderate weight – maintain control and quality<br>
+10 Landmine Twists @ Moderate weight – maintain control and quality<br>
+10 Landmine RDL (each) @ Moderate weight – maintain control and quality<br>
+*Rest 2:00 between sets</p>`,
+
+// ----------------------------------- VIERNES -------------------------------------
+  viernes: `<h3>WARM-UP</h3>
+<p>10:00 AMRAP<br>
+10 PVC Pass Throughs<br>
+5 Dynamic Squat Stretches<br>
+5 Empty Bar Muscle Cleans<br>
+5 Empty Bar Front Squats<br>
+5 Empty Bar Push press<br>
+20 Single-Unders<br>
+<br>
+— into —<br>
+3 sets:<br>
+2 Clean and Jerks (singles, build across sets to starting weight)</p>
+
+<h3>WEIGHTLIFTING - Clean and Jerk</h3>
+<p>Clean + Jerk<br>
+5x2 @ 75–80%</p>
+
+<h3>CUSTOM METCON</h3>
+<p>1-2-3-4-5-5-4-3-2-1<br>
+Power Cleans (85/57.5)<br>
+30 Double Unders after each set</p>`,
+
+// ---------------------------------- SÁBADO ---------------------------------------------
+  sabado: `<h3>WARM-UP</h3>
+<p>10:00 AMRAP<br>
+30-second Cardio<br>
+8 Ring Rows<br>
+50m Jog<br>
+10 Walking Lunge Steps<br>
+10 Alternating V-Ups</p>
+
+<h3>CUSTOM METCON</h3>
+<p>Teams of 2<br>
+5 sets (each/1:1)<br>
+15/12 Calorie Row<br>
+25ft Dumbbell Lunge (15/10)<br>
+100m Run<br>
+3 Strict Pull Ups</p>
+
+<h3>ACCESORIO</h3>
+<p>3 SETS<br>
+15 V-Ups<br>
+-rest 30 secs-<br>
+10 Rotational Medball Throw (each side)<br>
+-rest 30 secs-<br>
+10 Single-Arm Dumbbell Overhead Extensions (both arms same time) @ RPE 7/10<br>
+-rest 30 secs-<br>
+20 alternating Zottman Curl @ RPE 7/10 (10 each side)<br>
+-rest 1 minute between sets</p>`
+
+};
