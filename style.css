@@ -83,7 +83,7 @@ body, html {
 
 /* --- TIPOGRAFÍA --- */
 h3 {
-  font-size: 4.2em; 
+  font-size: 5.2em; 
   color: #ff0000; /* ROJO NEÓN PARA TÍTULOS */
   margin: 0.4em 0 0.15em 0;
   text-transform: uppercase;
@@ -94,11 +94,11 @@ h3 {
 }
 
 p {
-  font-size: 3.3em; 
+  font-size: 4.3em; 
   line-height: 1.25; 
   color: #f0f0f0;
   white-space: pre-line;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.2em;
   font-weight: 400;
   width: 100%; 
 }
@@ -121,6 +121,7 @@ p {
   p { font-size: 16px; }
 
 }
+
 
 
 
