@@ -29,7 +29,7 @@ Switch when both stations are completed (Score is Time)</p>`,
 5 Empty Bar Front Squats<br>
 8 Ring Rows<br>
 5 Scap Pull Ups<br>
-<br>
+
 — into —<br>
 3 sets:<br>
 3 Front Squats (build up to starting weight)</p>
@@ -83,7 +83,7 @@ Level 3: Odd minute: 30 seconds of barbell “ab rollers” Even minute: 2 Rope 
 -rest 1:1-<br>
 2 Rounds<br>
 15 Box Jumps (24/20)<br>
-12 Overhead Squats (42.5/30)<br>
+12 Overhead Squats (42.5/30)
 -rest 1:1-<br>
 2 Rounds<br>
 15 Box Jumps (24/20)<br>
@@ -126,7 +126,7 @@ A Completar<br>
 5 Empty Bar Muscle Cleans<br>
 5 Empty Bar Front Squats<br>
 5 Empty Bar Push press<br>
-20 Single-Unders<br>
+20 Single-Unders
 <br>
 — into —<br>
 3 sets:<br>
@@ -170,3 +170,4 @@ Power Cleans (85/57.5)<br>
 -rest 1 minute between sets</p>`
 
 };
+
