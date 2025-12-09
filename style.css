@@ -94,13 +94,14 @@ h3 {
 }
 
 p {
-  font-size: 4.3em; 
-  line-height: 1.25; 
+  font-size: 4.3em;
+  line-height: 1.22;
   color: #f0f0f0;
-  white-space: pre-line;
-  margin-bottom: 0.2em;
+  white-space: normal;           
+  margin-bottom: 0.2em;          
   font-weight: 400;
-  width: 100%; 
+  width: 100%;
+  text-align: center;            
 }
 
 /* --- MÓVIL (DEBUG) --- */
@@ -121,6 +122,7 @@ p {
   p { font-size: 16px; }
 
 }
+
 
 
 
