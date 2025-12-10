@@ -69,7 +69,7 @@ body, html {
 
 /* --- CONTENIDO WOD --- */
 .content-wrapper {
-  width: 96vh; 
+  width: 99vh; 
   display: flex;
   flex-direction: column;
   justify-content: center; 
@@ -135,6 +135,7 @@ p {
   p { font-size: 16px; }
 
 }
+
 
 
 
