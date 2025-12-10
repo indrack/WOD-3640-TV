@@ -110,7 +110,7 @@ p {
   
   /* --- CAMBIO CLAVE --- */
   text-align: left;      /* Alineado a la izquierda para aprovechar espacio */
-  padding: 0 10px;       /* Margen lateral para que no toque el borde de la TV */
+  padding: 0 2px;       /* Margen lateral para que no toque el borde de la TV */
   
   /* Opcional:  borde suave a la izquierda para darle estilo de "lista" 
   border-left: 5px solid #333; 
@@ -135,6 +135,7 @@ p {
   p { font-size: 16px; }
 
 }
+
 
 
 
