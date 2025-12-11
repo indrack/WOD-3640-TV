@@ -45,14 +45,15 @@ body, html {
 
 /* --- CONTENIDO WOD (GIGANTE) --- */
 .content-wrapper {
-  width: 99vh; 
-  height: 65%; /* Dejamos espacio para header y footer */
-  display: flex; flex-direction: column;
-  justify-content: center; align-items: center;
+  width: 95vh; /* Un poco menos para asegurar márgenes laterales */
+  height: 85%; /* CAMBIO: Aumentado de 65% a 85% para usar más pantalla */
+  display: flex; 
+  flex-direction: column;
+  justify-content: center; /* Mantiene centrado si es corto */
+  align-items: center;
   text-align: center;
   transform-origin: center center;
-  /* Marge inferior opcional  de seguridad */
-  margin-bottom: 20px; 
+  margin-bottom: 20; /* Quitamos margen innecesario */
 }
 
 /* Tipografía Maximizada */
@@ -67,17 +68,14 @@ h3 {
 }
 
 p {
-  font-size: 4.5em; /* Texto enorme */
+  font-size: 3.5em; /* CAMBIO: Reducido de 4.5em a 3.5em */
   line-height: 1.2;
   color: #fff;
-  white-space: pre-wrap; /* Respeta saltos de línea del JS */
+  white-space: pre-wrap;
   font-weight: 400;
-  
-  width: 100%;           /* Ocupa todo el ancho disponible */
-  
-  /* --- CAMBIO CLAVE --- */
-  text-align: left;      /* Alineado a la izquierda para aprovechar espacio */
-  padding: 0 40px;   
+  width: 100%;
+  text-align: left;
+  padding: 0 40px; 
 }
 
 /* --- BOTONES DE NAVEGACIÓN --- */
@@ -121,6 +119,7 @@ button:active {
   .nav-buttons { bottom: 80px; }
 
 }
+
 
 
 
