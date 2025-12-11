@@ -99,7 +99,7 @@ function ajustarEscala() {
   
   // Límites de escala
   if (escala > 1.8) escala = 1.8; // No hacer la letra absurdamente grande si hay poco texto
-  if (escala < 0.6) escala = 0.6; // No hacerla ilegible
+  if (escala < 0.35) escala = 0.35; // No hacerla ilegible
 
   wrapper.style.transform = `scale(${escala})`;
 }
@@ -107,4 +107,5 @@ function ajustarEscala() {
 // Inicializar
 window.addEventListener('load', cargarWOD);
 window.addEventListener('resize', () => setTimeout(ajustarEscala, 100));
+
 setInterval(cargarWOD, 60000); // Chequear cambio de día cada minuto
