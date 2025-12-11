@@ -69,13 +69,13 @@ h3 {
 
 p {
   font-size: 4.0em; /* CAMBIO: Reducido de 4.5em a 3.5em */
-  line-height: 1.2;
+  line-height: 1.4;
   color: #fff;
   white-space: pre-wrap;
   font-weight: 400;
   width: 100%;
   text-align: left;
-  padding: 0 40px; 
+  padding: 0 20px; 
 }
 
 /* --- BOTONES DE NAVEGACIÓN --- */
@@ -119,6 +119,7 @@ button:active {
   .nav-buttons { bottom: 80px; }
 
 }
+
 
 
 
