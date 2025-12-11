@@ -23,7 +23,7 @@ body, html {
 /* LOGO Y RELOJ (Misma posición, ajustado tamaño) */
 .bg-logo {
   position: absolute; top: 30px; right: 40px;  
-  width: 180px; opacity: 0.3; pointer-events: none;
+  width: 210px; opacity: 0.3; pointer-events: none;
 }
 .datetime-container {
   position: absolute; left: 30px; top: 30px;  
@@ -119,6 +119,7 @@ button:active {
   .nav-buttons { bottom: 80px; }
 
 }
+
 
 
 
