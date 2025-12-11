@@ -53,7 +53,7 @@ body, html {
   align-items: center;
   text-align: center;
   transform-origin: center center;
-  margin-bottom: 20; /* Quitamos margen innecesario */
+  margin-bottom: 10; /* Quitamos margen innecesario */
 }
 
 /* Tipografía Maximizada */
@@ -68,7 +68,7 @@ h3 {
 }
 
 p {
-  font-size: 3.5em; /* CAMBIO: Reducido de 4.5em a 3.5em */
+  font-size: 4.0em; /* CAMBIO: Reducido de 4.5em a 3.5em */
   line-height: 1.2;
   color: #fff;
   white-space: pre-wrap;
@@ -119,6 +119,7 @@ button:active {
   .nav-buttons { bottom: 80px; }
 
 }
+
 
 
 
