@@ -75,7 +75,7 @@ p {
   font-weight: 400;
   width: 100%;
   text-align: left;
-  padding: 0 20px; 
+  padding: 0 5px; 
 }
 
 /* --- BOTONES DE NAVEGACIÓN --- */
@@ -119,6 +119,7 @@ button:active {
   .nav-buttons { bottom: 80px; }
 
 }
+
 
 
 
