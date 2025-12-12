@@ -148,7 +148,7 @@ document.addEventListener('keydown', function(event) {
 
   // -- Botón Atrás (Evitar salir de la app) --
   if (key === 'Backspace' || code === 8 || key === 'Escape' || code === 27) {
-     // Opcional: Si quieres que 'Atrás' vuelva al slide anterior:
+     // Opcional
      event.preventDefault(); // Evita que el navegador cierre la página
      cambiarSlide(-1);
   }
@@ -163,3 +163,4 @@ window.addEventListener('resize', function() {
     setTimeout(ajustarEscala, 100);
 });
 setInterval(cargarWOD, 60000);
+
