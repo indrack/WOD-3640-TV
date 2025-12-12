@@ -45,7 +45,7 @@ body, html {
 
 /* --- CONTENIDO WOD (GIGANTE) --- */
 .content-wrapper {
-  width: 99vh; /* Un poco menos para asegurar márgenes laterales */
+  width: 96vh; /* Un poco menos para asegurar márgenes laterales */
   height: 85%; /* CAMBIO: Aumentado de 65% a 85% para usar más pantalla */
   display: flex; 
   flex-direction: column;
@@ -120,6 +120,7 @@ button:active {
   .nav-buttons { bottom: 80px; }
 
 }
+
 
 
 
