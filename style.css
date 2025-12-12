@@ -84,7 +84,8 @@ p {
   bottom: 10px; /* CAMBIO: Más pegado al borde inferior */
   width: 100%;
   display: flex;
-  justify-content: space-between; /* Uno a cada esquina */
+  justify-content: center; /* centro */
+  gap: 40px;
   padding: 0 20px; /* Menos margen lateral */
   z-index: 100;
   pointer-events: none; /* permite tocar a través del área vacía */
@@ -119,6 +120,7 @@ button:active {
   .nav-buttons { bottom: 80px; }
 
 }
+
 
 
 
