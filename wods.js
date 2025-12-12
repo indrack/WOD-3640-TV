@@ -149,12 +149,15 @@ A Completar
     {
       titulo: "WARM-UP",
       contenido: `10:00 AMRAP
-10 PVC Pass Throughs
-5 Dynamic Squat Stretches
-5 Empty Bar Complex
+10 PVC Pass Throughs 
+5 Dynamic Squat Stretches 
+5 Empty Bar Muscle Cleans 
+5 Empty Bar Front Squats 
+5 Empty Bar Push press
 20 Single-Unders
 — into —
-3 sets: 2 Clean and Jerks (build)`
+3 sets:
+2 Clean and Jerks (build)`
     },
     {
       titulo: "WEIGHTLIFTING",
@@ -198,4 +201,5 @@ Power Cleans (85/57.5)
 20 Alternating Zottman Curl`
     }
   ]
+
 };
