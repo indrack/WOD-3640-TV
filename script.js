@@ -104,8 +104,29 @@ function ajustarEscala() {
   wrapper.style.transform = `scale(${escala})`;
 }
 
+// --- CONTROL REMOTO TV (FLUX / ANDROID) ---
+document.addEventListener('keydown', function(event) {
+  
+  // 1. Obtener el código de la tecla (soporte para navegadores viejos)
+  const key = event.key; 
+  const code = event.keyCode; 
+
+  // --- NÚMEROS DEL 1 al 9 ---
+  
+  if (key >= '1' && key <= '9') {
+    
+    const targetIndex = parseInt(key) - 1;
+
+    // Verificamos que esa parte del WOD exista antes de cambiar
+    if (targetIndex >= 0 && targetIndex < currentWodParts.length) {
+      currentSlideIndex = targetIndex;
+      renderSlide();
+    }
+  }
+
 // Inicializar
 window.addEventListener('load', cargarWOD);
 window.addEventListener('resize', () => setTimeout(ajustarEscala, 100));
 
 setInterval(cargarWOD, 60000); // Chequear cambio de día cada minuto
+
