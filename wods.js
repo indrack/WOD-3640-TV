@@ -101,7 +101,7 @@ Optional: 1–2 barbell build-up sets`
     {
       titulo: "METCON",
       contenido: `2-2-2-3 min AMRAP 
-TC: 20:00
+      
 75 Double Unders 
 Max Squat Cleans in the time remaining ( 60/42.5) 
 -rest 1:00 between AMRAPs- 
@@ -214,6 +214,7 @@ Optional: 1–2 practice rounds of 50ft lunges + 5 V-Ups`
   ]
 
 };
+
 
 
 
