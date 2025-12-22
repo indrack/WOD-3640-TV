@@ -44,7 +44,9 @@ function cargarWOD() {
     renderSlide();
     
     // Si estábamos en modo full, regenerarlo por si cambió el día
-    if(isFullViewMode) renderFullView();
+    if(isFullViewMode) {
+        toggleFullView(); 
+    }
   }
 }
 
@@ -192,4 +194,5 @@ document.addEventListener('keydown', function(event) {
 window.addEventListener('load', () => { cargarWOD(); setTimeout(ajustarEscala, 500); });
 window.addEventListener('resize', () => setTimeout(ajustarEscala, 100));
 setInterval(cargarWOD, 60000);
+
 
