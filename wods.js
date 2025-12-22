@@ -51,10 +51,10 @@ Bar Muscle Up Progression Reps (kip swings → hips to bar → transitions)`
     },
     {
       titulo: "METCON",
-      contenido: `Star of Bethlehem
+      contenido: `*Star of Bethlehem*
 
-2 sets:
-5:00 AMRAP
+*2 sets*:
+*5:00 AMRAP*
 4-8-12-16….
 Overhead Squats (42.5/30)
 1-2-3-4….
@@ -87,18 +87,18 @@ Bar Muscle Ups
     },
     {
       titulo: "GYMNASTICS (Handstand Walk)",
-      contenido: `GYMNASTIC TEST
+      contenido: `*GYMNASTIC TEST*
 
 2:00 AMRAP
-Level 1: Max Distance Double Dumbbell Overhead Carry
-Level 2: Max Wall Walks
-Level 3: Max Distance Handstand Walk For distance, every 25 feet = 1 rep.
+*Level 1*: Max Distance Double Dumbbell Overhead Carry
+*Level 2*: Max Wall Walks
+*Level 3*: Max Distance Handstand Walk For distance, every 25 feet = 1 rep.
 
 We’re testing total accumulated effort in two minutes, not one max set`
     },
     {
       titulo: "METCON (Reps)",
-      contenido: `The Holly and the Ivy
+      contenido: `*The Holly and the Ivy*
 
 30:00 AMRAP
 10x50ft Shuttle Runs
@@ -122,7 +122,7 @@ Optional: 1–2 Cycling Sets (3–5 reps at moderate weight)`
     },
     {
       titulo: "METCON (Tiempo)",
-      contenido: `Gold and Myrrh
+      contenido: `*Gold and Myrrh*
 
 21-15-9
 Hang Power Cleans (60/42.5)
@@ -142,14 +142,14 @@ Hang Power Cleans (60/42.5)
     },
      {
       titulo: "ACCESORIO",
-      contenido: `Tabata Dumbbell Bench
+      contenido: `*Tabata Dumbbell Bench*
 8 sets
 20-seconds Max Reps Dumbbell Bench (light-moderate)
 10-second Rest
 
 -Rest 2:00, into
 
-Tabata Banded Face Pulls
+*Tabata Banded Face Pulls*
 8 sets
 20-seconds Max Reps Banded Face Pulls (light)
 10-second Rest`
@@ -163,7 +163,7 @@ Tabata Banded Face Pulls
   viernes: [
     {
       titulo: "WARM-UP",
-      contenido: `8:00 AMRAP
+      contenido: `*8:00 AMRAP*
 30-second Cardio
 10 Banded Good Mornings
 10 Banded Strict Press
@@ -175,16 +175,14 @@ Tabata Banded Face Pulls
 Optional: 1–2 build-up sets for deadlifts (light to moderate)`
     },
     {
-      titulo: "GYMNASTICS (Strict Pull-up)",
-      contenido: `GYMNASTIC TEST
-
-Level 1: Determine the thinnest band possible that you can perform a strict pull-up
-Level 2: Determine your max, unbroken set of strict pull-ups or chin-ups
-Level 3: Determine your max weighted strict pull-up weight`
+      titulo: "GYMNASTICS test (Strict Pull-up)",
+      contenido: `*Level 1*: Determine the thinnest band possible that you can perform a strict pull-up
+*Level 2*: Determine your max, unbroken set of strict pull-ups or chin-ups
+*Level 3*: Determine your max weighted strict pull-up weight`
     },
     {
       titulo: "METCON (Tiempo)",
-      contenido: `Frankincense
+      contenido: `*Frankincense*
 
 3 Rounds
 21 Handstand Push Ups
@@ -197,7 +195,7 @@ Level 3: Determine your max weighted strict pull-up weight`
   sabado: [
     {
       titulo: "WARM-UP",
-      contenido: `10:00 AMRAP
+      contenido: `*10:00 AMRAP*
 30-second Row
 30-second Run
 20 Single Unders
@@ -208,9 +206,9 @@ Optional: Practice 2–3 partner transition cycles on the rower and rope`
     },
     {
       titulo: "METCON",
-      contenido: `The Magi
+      contenido: `*The Magi*
 
-Teams of 2
+*Teams of 2*
 Partner Triple 3
 3000/2400m Row (partners must switch every 30 seconds)
 300 Double Unders (partners must switch every 30 seconds)
@@ -218,9 +216,9 @@ Partner Triple 3
     },
     {
       titulo: "ACCESORIO",
-      contenido: `MAYHEM MINI-PUMP – LOWER PULL
+      contenido: `*MAYHEM MINI-PUMP – LOWER PULL*
 
-4 ROUNDS
+*4 ROUNDS*
 8 Weighted Hip Thrusts @ RPE 7-7.5/10
 -rest 30 seconds
 25 Supermans
@@ -231,6 +229,7 @@ Partner Triple 3
     }
   ]
 };
+
 
 
 
