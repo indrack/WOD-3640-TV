@@ -19,7 +19,7 @@ Farmers Carry
     },
     {
       titulo: "METCON (Reps)",
-      contenido: `Host of Angels
+      contenido: `*Host of Angels*
 
 Each station is 2 minutes of work, followed by 1 minute of rest. Athletes will stay at each station for 3 rounds, before moving on to the next station.
 
@@ -27,10 +27,10 @@ Each station is 2 minutes of work, followed by 1 minute of rest. Athletes will s
     },
     {
       titulo: "METCON (Reps)",
-      contenido: `Station 1: 300/250m Row + Max Burpee Over Rower in remaining time
-Station 2: 250 m Run + Max distance Farmers Carry in remaining time (every 7.5m or 25 feet = 1 rep)
-Station 3: 10x50ft Shuttle Run + Max Alternating DB Snatches in remaining time (50/35 lbs, 22.5/15 kg)
-Station 4: 250m Run + Max Wall Balls in remaining time (20/14 lbs, 9/6 kg)`
+      contenido: `*Station 1*: 300/250m Row + Max Burpee Over Rower in remaining time
+*Station 2*: 250 m Run + Max distance Farmers Carry in remaining time (every 7.5m or 25 feet = 1 rep)
+*Station 3*: 10x50ft Shuttle Run + Max Alternating DB Snatches in remaining time (50/35 lbs, 22.5/15 kg)
+*Station 4*: 250m Run + Max Wall Balls in remaining time (20/14 lbs, 9/6 kg)`
 
     }
   ],
@@ -231,6 +231,7 @@ Partner Triple 3
     }
   ]
 };
+
 
 
 
