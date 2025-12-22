@@ -57,7 +57,12 @@ function renderSlide() {
 
   setTimeout(() => {
     const part = currentWodParts[currentSlideIndex];
-    wrapper.innerHTML = `<h3>${part.titulo}</h3><p>${part.contenido}</p>`;
+    
+    // 1. APLICAMOS EL FORMATO AQUÍ
+    const contenidoFormateado = formatearTexto(part.contenido);
+
+    // 2. LO USAMOS EN EL HTML
+    wrapper.innerHTML = `<h3>${part.titulo}</h3><p>${contenidoFormateado}</p>`;
 
     document.getElementById('slide-indicator').innerText = `${currentSlideIndex + 1} / ${currentWodParts.length}`;
     
@@ -77,9 +82,16 @@ function renderSlide() {
   }, 300);
 }
 
+// --- FUNCIÓN DE AYUDA PARA FORMATO ---
+function formatearTexto(texto) {
+  if (!texto) return "";
+  // Busca texto entre asteriscos *texto* y lo convierte a <strong>texto</strong>
+  return texto.replace(/\*(.*?)\*/g, '<strong>$1</strong>');
+}
+
 // 3. NUEVA FUNCIÓN: MODO VISTA COMPLETA
 function toggleFullView() {
-  isFullViewMode = !isFullViewMode; // Alternar estado
+  isFullViewMode = !isFullViewMode; 
   
   const fullContainer = document.getElementById('full-view-container');
   const slideWrapper = document.getElementById('wod-display');
@@ -88,20 +100,20 @@ function toggleFullView() {
 
   if (isFullViewMode) {
     // ACTIVAR MODO RESUMEN
-    
-    // 1. Generar contenido HTML concatenando todo
     let fullHTML = "";
     currentWodParts.forEach(part => {
+      // 1. APLICAMOS EL FORMATO AQUÍ TAMBIÉN
+      const contenidoFormateado = formatearTexto(part.contenido);
+      
       fullHTML += `
         <div class="full-section">
           <h3>${part.titulo}</h3>
-          <p>${part.contenido}</p>
+          <p>${contenidoFormateado}</p>
         </div>
       `;
     });
     fullContainer.innerHTML = fullHTML;
 
-    // 2. Mostrar/Ocultar elementos
     fullContainer.classList.remove('hidden');
     slideWrapper.classList.add('hidden');
     indicator.classList.add('hidden');
@@ -114,7 +126,6 @@ function toggleFullView() {
     indicator.classList.remove('hidden');
     buttons.classList.remove('hidden');
     
-    // Re-ajustar escala por si acaso
     setTimeout(ajustarEscala, 100);
   }
 }
@@ -181,3 +192,4 @@ document.addEventListener('keydown', function(event) {
 window.addEventListener('load', () => { cargarWOD(); setTimeout(ajustarEscala, 500); });
 window.addEventListener('resize', () => setTimeout(ajustarEscala, 100));
 setInterval(cargarWOD, 60000);
+
