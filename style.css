@@ -118,6 +118,11 @@ button {
   text-align: left;
   padding: 0 5px; 
 }
+/* --- TEXTO EN NEGRITA  --- */
+strong {
+  font-weight: 900;  
+  color: #ffffff;    
+}
 
 /* --- VISTA COMPLETA (RESUMEN) --- */
 .hidden { 
@@ -186,4 +191,5 @@ button {
   /* El modo vista completa no está optimizado para móvil, pero lo ocultamos por si acaso */
   #full-view-container { display: none; } 
 }
+
 
