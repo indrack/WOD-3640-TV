@@ -39,7 +39,7 @@ Each station is 2 minutes of work, followed by 1 minute of rest. Athletes will s
    lunes: [
     {
       titulo: "WARM-UP",
-      contenido: `8:00 AMRAP
+      contenido: `*8:00 AMRAP*
 30-second Row
 10 Banded Pass Throughs
 6 Empty Bar Overhead Squats
@@ -64,7 +64,7 @@ Bar Muscle Ups
     },
     {
       titulo: "ACCESORIO",
-      contenido: `4 SETS
+      contenido: `*4 SETS*
 10 Dumbbell Bulgarian Split Squats (each side) RPE 6-7
 -rest 30 seconds
 10 Single Leg Dumbbell RDL (each side) RPE 6-7
@@ -77,7 +77,7 @@ Bar Muscle Ups
   martes: [
     {
       titulo: "WARM-UP",
-      contenido: `8:00 AMRAP
+      contenido: `*8:00 AMRAP*
 100m Easy Jog
 4 Shuttle Runs (practice technique)
 8 Air Squats
@@ -100,7 +100,7 @@ We’re testing total accumulated effort in two minutes, not one max set`
       titulo: "METCON (Reps)",
       contenido: `*The Holly and the Ivy*
 
-30:00 AMRAP
+*30:00 AMRAP*
 10x50ft Shuttle Runs
 15 Burpees
 
@@ -112,7 +112,7 @@ We’re testing total accumulated effort in two minutes, not one max set`
   miercoles: [
     {
       titulo: "WARM-UP",
-      contenido: `8:00 AMRAP
+      contenido: `*8:00 AMRAP*
 30-second Machine
 8 Empty Bar Hang Power Cleans
 6 Front Rack Lunges
@@ -229,6 +229,7 @@ Partner Triple 3
     }
   ]
 };
+
 
 
 
