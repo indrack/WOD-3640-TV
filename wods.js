@@ -4,7 +4,7 @@ const wods = {
   domingo: [
     {
       titulo: "WARM-UP",
-      contenido: `2:00 cardio of choice (run or machine)
+      contenido: `*2:00 cardio of choice (run or machine)*
 Then 2 rounds
 10 Air Squats
 10 Alternating Lunges
@@ -229,15 +229,3 @@ Partner Triple 3
     }
   ]
 };
-
-
-
-
-
-
-
-
-
-
-
-
