@@ -98,12 +98,18 @@ Optional: 1 practice round of each workout piece (scaled)`
       titulo: "CUSTOM METCON (Tiempo)",
       contenido: `*Auld Lang Syne*
 *Teams of 2:*
+2025 into 2026. Happy New Year! Each round, one person does the Row while the other does the Run.
+Partners work at the same time. In the next round, they switch places. 
+Totals per team for the workout: 520 cal Row and 6500m Run.`
+    },
+    {
+    titulo: "CUSTOM METCON (Tiempo)",
+      contenido: `*Auld Lang Syne*
+*Teams of 2:*
 26 Rounds
 P1: 20 Calorie Row
 P2: 250m Run
-(Score is Time)
-
-*2025 into 2026. Happy New Year! Each round, one person does the Row while the other does the Run. Partners work at the same time. In the next round, they switch places. Totals per team for the workout: 520 cal Row and 6500m Run.*`
+(Score is Time)`
     }
   ],
 
@@ -175,3 +181,4 @@ Teams of 2
     }
   ]
 };
+
