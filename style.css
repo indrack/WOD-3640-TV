@@ -1,7 +1,5 @@
 /* --- RESET BÁSICO --- */
-* { margin:0;
-   padding:0;
-   box-sizing:border-box; }
+* { margin:0; padding:0; box-sizing:border-box; }
 
 body, html { 
   width: 100vw; height: 100vh;
@@ -27,80 +25,61 @@ body, html {
 
 /* LOGO */
 .bg-logo {
-  position: absolute;
-  top: 30px;
-  right: 40px;  
-  width: 210px;
-  opacity: 0.3;
-  pointer-events: none;
-  z-index: 0;
+  position: absolute; top: 30px; right: 40px;  
+  width: 210px; opacity: 0.3; pointer-events: none; z-index: 0;
 }
 /* FECHA Y RELOJ */
 .datetime-container {
-  position: absolute;
-  left: 30px;
-  top: 30px;  
-  text-align: left;
-  opacity: 0.8;
-  z-index: 10;
+  position: absolute; left: 30px; top: 30px;  
+  text-align: left; opacity: 0.8; z-index: 10;
 }
-#date-display { 
-  font-size: 1.5em;
-  color: #ccc;
-  margin-bottom: 5px;
-}
+#date-display { font-size: 1.5em; color: #ccc; margin-bottom: 5px; }
 #time-display { 
-  font-size: 2.5em;
-  color: #39ff14;
-  font-weight: bold;
+  font-size: 2.5em; color: #39ff14; font-weight: bold; 
   text-shadow: 0 0 15px rgba(57,255,20,0.5);
 }
 
 /* INDICADOR Y BOTONES */
 .slide-indicator {
-  position: absolute;
-  top: 30px; left: 50%;
+  position: absolute; top: 30px; left: 50%;
   transform: translateX(-50%);
-  font-size: 2em; color: #555;
-  font-weight: bold;
-  z-index: 10;
+  font-size: 2em; color: #555; font-weight: bold; z-index: 10;
 }
 .nav-buttons {
-  position: absolute;
-  bottom: 10px; width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  padding: 0 20px; 
-  z-index: 100;
-  pointer-events: none;
+  position: absolute; bottom: 10px; width: 100%;
+  display: flex; justify-content: center; gap: 40px;
+  padding: 0 20px; z-index: 100; pointer-events: none;
 }
 button {
-  pointer-events: auto; background: rgba(255,255,255,0.15); border: 1px solid #555; color: #fff;
-  font-size: 2em; padding: 10px 25px; border-radius: 50px; cursor: pointer; backdrop-filter: blur(5px);
+  pointer-events: auto; background: rgba(255,255,255,0.15); 
+  border: 1px solid #555; color: #fff; font-size: 2em; 
+  padding: 10px 25px; border-radius: 50px; cursor: pointer; 
+  backdrop-filter: blur(5px);
 }
 
-/* --- VISTA DE SLIDES (La normal) --- */
+/* --- VISTA DE SLIDES (ESCRITORIO/TV) --- */
+/* Usamos la configuración compatible con el "Ajuste de Pantalla" */
 .content-wrapper {
-  width: 96vh;
-  height: 85%; 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  transform-origin: center center;
-  margin-bottom: 10px; 
-  transition: opacity 0.3s ease;
+  
+  /* ESTO PERMITE AL JS CALCULAR EL ANCHO NATURAL */
+  width: auto;       
+  max-width: 100%;   
+  margin: 0 auto;    
+  
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 1;
 }
 .content-wrapper.fading { 
-  opacity: 0;
-  filter: blur(10px);
+  opacity: 0; filter: blur(10px);
 }
 
-/* Estilos Slides */
+/* Tipografía TV */
 .content-wrapper h3 {
-  font-size: 6em;
+  font-size: 5.1em;
   color: #ff0000;
   margin-bottom: 0.3em;
   text-transform: uppercase;
@@ -109,69 +88,48 @@ button {
   text-shadow: 0px 0px 20px rgba(255, 0, 0, 0.6);
 }
 .content-wrapper p {
-  font-size: 4.0em;
-  line-height: 1.4;
+  font-size: 3.8em; 
+  line-height: 1.2; 
   color: #fff;
   white-space: pre-wrap;
   font-weight: 400;
   width: 100%;
   text-align: left;
-  padding: 0 5px; 
+  padding: 0 40px; /* Padding generoso para TV */
+  margin: 0; 
+  word-wrap: break-word; 
 }
-/* --- TEXTO EN NEGRITA  --- */
+
+/* --- TEXTO EN NEGRITA (Del código original) --- */
 strong {
   font-weight: 900;  
-  color: #ffffff;    
+  color: #ffffff;
+  text-shadow: 0px 0px 10px rgba(255,255,255,0.3); /* Un poco de brillo extra */
 }
 
 /* --- VISTA COMPLETA (RESUMEN) --- */
-.hidden { 
-  display: none !important;
-}
+.hidden { display: none !important; }
 
 #full-view-container {
-  width: 96vh; 
-  height: 88vw; /* Ocupa casi toda la pantalla */
-  overflow-y: auto; /* Permite bajar si es muy largo */
-  padding: 20px 40px;
-  background: #000; /* Tapa lo de atrás */
-  z-index: 50; /* Encima de los slides */
-  text-align: left;
-  
-  /* Flex para organizar */
-  display: flex;
-  flex-direction: column;
-  gap: 30px; /* Espacio entre secciones */
+  width: 96vh; height: 88vw; 
+  overflow-y: auto; padding: 20px 40px;
+  background: #000; z-index: 50; text-align: left;
+  display: flex; flex-direction: column; gap: 30px; 
 }
-
-/* Estilos específicos para el modo resumen (Letra más pequeña) */
-.full-section {
-  border-bottom: 1px solid #333;
-  padding-bottom: 15px;
-}
+.full-section { border-bottom: 1px solid #333; padding-bottom: 15px; }
 .full-section h3 {
-  font-size: 3em; /* Mitad de tamaño que slide */
-  color: #ff0000;
-  margin-bottom: 10px;
-  border-bottom: none;
-  text-shadow: none;
-  display: block;
-   text-shadow: 0px 0px 20px rgba(255, 0, 0, 0.6);
-  text-align: left;
+  font-size: 3em; color: #ff0000; margin-bottom: 10px;
+  border-bottom: none; text-shadow: none; display: block;
+  text-shadow: 0px 0px 20px rgba(255, 0, 0, 0.6); text-align: left;
 }
 .full-section p {
-  font-size: 2em; /* Mitad de tamaño que slide */
-  line-height: 1.3;
-  color: #ddd;
-  white-space: pre-wrap;
+  font-size: 2em; line-height: 1.3; color: #ddd; white-space: pre-wrap;
 }
-
-/* Scrollbar personalizada invisible pero funcional */
 #full-view-container::-webkit-scrollbar { width: 8px; }
 #full-view-container::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
 
-
-/* --- MEDIA QUERY MÓVIL (Sin cambios funcionales, solo visuales) --- */
+/* --- MEDIA QUERY MÓVIL (ORIGINAL DE LA VERSIÓN NEGRITA) --- */
+/* Se conserva intacta como pediste */
 @media (orientation: portrait) {
   
   /* 1. Resetear el contenedor principal */
@@ -220,7 +178,6 @@ strong {
     height: auto !important;
     margin-top: 0 !important;
     margin-bottom: 80px !important; 
-    
     display: block !important; 
     text-align: left !important;
     transform: none !important;
@@ -228,14 +185,14 @@ strong {
 
   /* 4. Letras tamaño humano */
   .content-wrapper h3 {
-    font-size: 2.2rem !important; /* Tamaño legible */
+    font-size: 2.2rem !important; 
     width: 100% !important;
     text-align: left !important;
     margin-top: 0 !important;
   }
 
   .content-wrapper p {
-    font-size: 1.1rem !important; /* Tamaño legible */
+    font-size: 1.1rem !important; 
     line-height: 1.5 !important;
     text-align: left !important;
     width: 100% !important;
@@ -259,8 +216,5 @@ strong {
     padding: 10px 20px !important;
   }
 
-  
   #full-view-container { display: none !important; }
 }
-
-
