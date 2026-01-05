@@ -40,11 +40,11 @@ Every 2:00 (8 sets)
 10 Deadbugs`
     },
     {
-      titulo: "Weightlifting (Back Squat),
+      titulo: "Weightlifting (Back Squat)",
       contenido: `1RM Back Squat`
     },
     {
-      titulo: "Custom Metcon (Tiempo),
+      titulo: "Custom Metcon (Tiempo)",
       contenido: `Son of God
 
 3 Rounds
@@ -179,5 +179,6 @@ Teams of 2
     }
   ]
 };
+
 
 
