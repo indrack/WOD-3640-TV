@@ -126,7 +126,8 @@ Build up to weight in sets of 3 (singles). Focus on good positioning and proper 
     {
       titulo: "Weightlifting (Clean and Jerk)",
       contenido: `Every 1:00 (8:00)
-3 Power Clean and Jerks (singles) @ RPE 6`
+3 Power Clean and Jerks (singles) 
+@ RPE 6`
     },
     {
       titulo: "Custom Metcon (Rondas y Reps)",
@@ -236,3 +237,4 @@ Deadlifts (142.5/92.5)
     }
   ]
 };
+
