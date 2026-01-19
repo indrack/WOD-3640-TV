@@ -50,7 +50,8 @@ Build up to opening weight`
 Every 1:00 (10:00)
 2 Touch-and-Go Power Snatch 
 + 
-2 Overhead Squat @ RPE 6–7`
+2 Overhead Squat 
+@ RPE 6–7`
     },
     {
       titulo: "Custom Metcon (Tiempo)",
@@ -235,5 +236,6 @@ Deadlifts (142.5/92.5)
     }
   ]
 };
+
 
 
