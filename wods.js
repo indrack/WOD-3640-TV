@@ -3,78 +3,80 @@ const wods = {
   // --------------------------------- DOMINGO ------------------------------------
   domingo: [
     {
-      titulo: "(WARM-UP)",
-      contenido: `6:00 AMRAP
+      titulo: "WARM-UP",
+      contenido: `*6:00 AMRAP*
 30 Single Unders
 5 Dynamic Squat Stretches
 10 Sit Ups
 10 Alternate V-Ups`
     },
     {
-      titulo: "(SKILL)",
-      contenido: `Double Unders
+      titulo: "SKILL",
+      contenido: `*Double Unders*
 Practice progressions to be able to do double unders`
     },
     {
-      titulo: "(CUSTOM METCON – Tiempo)",
-      contenido: `(Home of the 49ers)
-3 rounds
+      titulo: "CUSTOM METCON (Tiempo)",
+      contenido: `*Home of the 49ers*
+*3 rounds*
 75 Double Unders
 25 V-Ups`
     },
     {
-      titulo: "(FINISHER – Peso)",
-      contenido: `800m Heavy Farmer Carry`
+      titulo: "FINISHER (Peso)",
+      contenido: `800m *Heavy Farmer Carry*`
     }
   ],
 
   // ------------------------------------ LUNES ------------------------------------
   lunes: [
     {
-      titulo: "(WARM-UP)",
-      contenido: `6:00 AMRAP
+      titulo: "WARM-UP",
+      contenido: `*6:00 AMRAP*
 30-second Cardio
 4 Lunge Matrix
 3 Tempo Back Squats (empty bar, build up to 50%)
 10 Sit Ups`
     },
     {
-      titulo: "(WEIGHTLIFTING – Back Squat)",
+      titulo: "Weightlifting (Back Squat)",
       contenido: `Every 2:30 × 4 sets
-2 Back Squats @80–82%`
+2 Back Squats
+@80–82%`
     },
     {
-      titulo: "(CUSTOM METCON)",
-      contenido: `(Levi’s Stadium)
-5 Sets:
+      titulo: "Custom Metcon",
+      contenido: `*Levi’s Stadium*
+*5 Sets*:
 30 Air Squats
 50ft Dumbbell Front Rack Lunges (22.5/15 DBs)
--rest 1:30 between sets-`
+*-rest 1:30 between sets-*`
     }
   ],
 
   // ----------------------------------- MARTES ------------------------------------
   martes: [
     {
-      titulo: "(WARM-UP)",
-      contenido: `Banded 7s
+      titulo: "WARM-UP",
+      contenido: `*Banded 7s*
 -into-
-6:00 AMRAP
+*6:00 AMRAP*
 30-second Easy Row
 6 Box Step Ups
 4 Box Jumps
 4 Strict Press (empty bar - build in weight, stay under 50%)`
     },
     {
-      titulo: "(WEIGHTLIFTING – Shoulder Press)",
+      titulo: "Weightlifting (Shoulder Press)",
       contenido: `Every 2:00 × 5 sets
-2 Shoulder Press @75%`
+2 Shoulder Press
+@75%`
     },
     {
-      titulo: "(CUSTOM METCON)",
-      contenido: `(Halftime)
-Teams of 2
-5 Rounds:
+      titulo: "Custom Metcon",
+      contenido: `*Halftime*
+*Teams of 2*
+*5 Rounds*:
 Partner 1: 20/15 Calorie Row
 Partner 2: 10 Box Jump Overs (24/20)
 -Switch when both are completed-`
@@ -84,8 +86,8 @@ Partner 2: 10 Box Jump Overs (24/20)
   // --------------------------------- MIÉRCOLES ----------------------------------
   miercoles: [
     {
-      titulo: "(WARM-UP)",
-      contenido: `8:00 AMRAP
+      titulo: "WARM-UP",
+      contenido: `*8:00 AMRAP*
 30-second Cardio
 5 Hanging Knee Raises
 5 Dynamic Squat Stretches
@@ -94,13 +96,14 @@ Partner 2: 10 Box Jump Overs (24/20)
 4 Deadlifts (empty bar - build in weight, stay under 50%)`
     },
     {
-      titulo: "(WEIGHTLIFTING – Deadlift)",
+      titulo: "Weightlifting (Deadlift)",
       contenido: `Every 2:30 × 4 sets
-2 Deadlifts @80–82%`
+2 Deadlifts
+@80–82%`
     },
     {
-      titulo: "(CUSTOM METCON – Tiempo)",
-      contenido: `(On the Gridiron)
+      titulo: "Custom Metcon (Tiempo)",
+      contenido: `*On the Gridiron*
 10-9-8-7-6-5-4-3-2-1
 Deadlifts (85/57.5)
 Push Ups
@@ -111,8 +114,8 @@ Toes to Bar`
   // ----------------------------------- JUEVES -----------------------------------
   jueves: [
     {
-      titulo: "(WARM-UP)",
-      contenido: `8:00 AMRAP
+      titulo: "WARM-UP",
+      contenido: `*8:00 AMRAP*
 30 Single Unders
 10 Banded Pass Throughs
 5 Dynamic Squat Stretches
@@ -120,18 +123,19 @@ Toes to Bar`
 3 High Hang Muscle Snatch (PVC - empty bar)
 3 Overhead Squats (PVC - empty bar)
 10 Sit Ups
--into-
+*-into-*
 3:00 Build Up to working weight
 2 Touch and Go Power Snatch + 1 Overhead Squat`
     },
     {
-      titulo: "(WEIGHTLIFTING – Power Snatch)",
-      contenido: `Every 2:00 (10:00)
-2 Touch-and-Go Power Snatch + 1 Overhead Squat @RPE 7`
+      titulo: "Weightlifting (Power Snatch)",
+      contenido: `*Every 2:00 (10:00)*
+2 Touch-and-Go Power Snatch + 1 Overhead Squat
+@RPE 7`
     },
     {
-      titulo: "(CUSTOM METCON – Tiempo)",
-      contenido: `(Annie)
+      titulo: "Custom Metcon (Tiempo)",
+      contenido: `*Annie*
 50-40-30-20-10
 Double Unders
 Sit-Ups`
@@ -141,10 +145,10 @@ Sit-Ups`
   // ----------------------------------- VIERNES ----------------------------------
   viernes: [
     {
-      titulo: "(WARM-UP)",
-      contenido: `Banded 7s
+      titulo: "WARM-UP",
+      contenido: `*Banded 7s*
 -into-
-9:00 AMRAP
+*9:00 AMRAP*
 30-second Row
 5 Scap Pull Ups
 5 Single Arm Ring Rows (each)
@@ -152,42 +156,42 @@ Sit-Ups`
 5 Wall Balls`
     },
     {
-      titulo: "(CUSTOM METCON)",
-      contenido: `(Open 20.5)
-Teams of 3
+      titulo: "Custom Metcon",
+      contenido: `*Open 20.5*
+*Teams of 3*
 For time, partitioned any way:
-80 Ring Muscle Ups or Chin over bar Pull Ups
+80 Ring Muscle Ups or Chin over Bar Pull Ups
 160 Calorie Row
 240 Wall Balls (20/14)
--Athletes can work at the same time-`
+*-Athletes can be working at the same time-*`
     },
     {
-      titulo: "(ACCESORIO)",
-      contenido: `(Core Work)
-3 Sets:
+      titulo: "Accesorio",
+      contenido: `*Core Work*
+*3 Sets:*
 10 Seated Oblique Twists with Med Ball (each side)
--rest 30 seconds-
+*-rest 30 seconds-*
 20 Plank KB Pull Unders
--Rest 1:00 between rounds-`
+*-Rest 1:00 between rounds-*`
     }
   ],
 
   // ---------------------------------- SÁBADO ------------------------------------
-  sabado: [
+   sabado: [
     {
-      titulo: "(WARM-UP)",
-      contenido: `2:00 Cardio
+      titulo: "WARM-UP",
+      contenido: `*2:00 Cardio*
 -into-
-8:00 AMRAP
+*8:00 AMRAP*
 100m Jog
 4 Inchworms
 25ft Lizard Crawl
 8 Box Step Ups`
     },
     {
-      titulo: "(CUSTOM METCON – Tiempo)",
-      contenido: `(Foam Fingers and Face Paint)
-Teams of 2
+      titulo: "CUSTOM METCON – Tiempo",
+      contenido: `*Foam Fingers and Face Paint*
+*Teams of 2*
 400m Run (together)
 15 Synchro Wall Walks (or 30 Split)
 800m Run (together)
@@ -196,15 +200,16 @@ Teams of 2
     },
     {
       titulo: "(GYMNASTICS OPEN PREP – HSPU)",
-      contenido: `Level 1 EMOM x10:
+      contenido: `*EMOM x10*
+*Level 1 :*
 Odd: 25 Double Unders (or singles)
 Even: 10 Seated DB Strict Press
 
-Level 2 EMOM x10:
+*Level 2 :*
 Odd: 25 Double Unders
 Even: AMRAP Pike on Box Strict HSPU (cap 10)
 
-Level 3 EMOM x10:
+*Level 3:*
 25 DU + AMRAP Strict HSPU until 45s
 
 Score: total HSPU / Press reps`
