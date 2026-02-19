@@ -33,20 +33,23 @@ const wgirls = {
   miercoles: [
     {
       titulo: "WARM-UP",
-      contenido: `*3 RFT* 
-3 shuttle runs
-10 kb SDLHP
-5 up Down 
-100m row`
+      contenido: `*Amrap x 10 min*
+20 Double jumping Jacks
+10 ring rows 
+8 box steps 
+4 gusanitos 
+100 m run 
+
+*SKILL*
+box jump
+`
     },
     {
       titulo: "WOD",
-      contenido: `*15 RFT*
-15 kb DL
-10 russian swings 
-5 goblet squat 
-*luego de cada round 
-200m row/100m run`
+      contenido: `*Cada 3 min x 7 sets* 
+4 burpee box jump 
+8 knee raises 
+4 shuttle runs`
     }
   ],
 
@@ -57,19 +60,25 @@ const wgirls = {
   viernes: [
     {
       titulo: "WARM-UP",
-      contenido: `*AMRAP x 10 min*
-200m row 
-12 MB G2OH 
-10 squats 
-8 lunges 
-4 gusanitos `
+      contenido: `*Tabata #1*
+Banded lat. walk
+Banded glute bridge 
+*Tabata #2*
+Lunges
+Squats 
+*Tabata #3*
+Alt. V-ups
+Mountain climbers `
     },
     {
       titulo: "WOD",
-      contenido: `10-9-8-7-6-5-4-3-2-1
-Double DB front squat 
-Burpee over DB
-Cals row`
+      contenido: `*6 ROUNDS* 
+200m row 
+16 kb/dl 
+8 russian swings 
+8 jumping squats 
+8 box steps over 
+*-2 min rest-*`
     }
   ],
 
