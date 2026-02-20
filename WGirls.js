@@ -60,25 +60,22 @@ box jump
   viernes: [
     {
       titulo: "WARM-UP",
-      contenido: `*Tabata #1*
-Banded lat. walk
-Banded glute bridge 
-*Tabata #2*
-Lunges
-Squats 
-*Tabata #3*
-Alt. V-ups
-Mountain climbers `
+      contenido: `AMRAP x 10 min* 
+200m row 
+12 MB G2OH 
+10 squats 
+8 lunges 
+4 gusanitos`
     },
     {
       titulo: "WOD",
-      contenido: `*6 ROUNDS* 
-200m row 
-16 kb/dl 
-8 russian swings 
-8 jumping squats 
-8 box steps over 
-*-2 min rest-*`
+      contenido: `10-9-8-7-6-5-4-3-2-1
+Double DB front squat 
+Burpee over DB
+Cals row10-9-8-7-6-5-4-3-2-1
+Double DB front squat 
+Burpee over DB
+Cals row`
     }
   ],
 
