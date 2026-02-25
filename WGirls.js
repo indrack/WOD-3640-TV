@@ -35,23 +35,21 @@ Max Shuttle runs
   miercoles: [
     {
       titulo: "WARM-UP",
-      contenido: `*Amrap x 10 min*
-20 Double jumping Jacks
-10 ring rows 
-8 box steps 
-4 gusanitos 
-100 m run 
-
-*SKILL*
-box jump
-`
+      contenido: `AMRAP x 10 min 
+100m run 
+12 MB G2OH
+10 lunges 
+8 jumping squats 
+6 up downs `
     },
     {
       titulo: "WOD",
-      contenido: `*Cada 3 min x 7 sets* 
-4 burpee box jump 
-8 knee raises 
-4 shuttle runs`
+      contenido: `WOD “parejas”
+For time 
+21-18-15–12-15-18-21
+Cals row 
+Knee raises 
+MB sit ups`
     }
   ],
 
