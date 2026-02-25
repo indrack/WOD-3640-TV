@@ -60,22 +60,21 @@ MB sit ups`
   viernes: [
     {
       titulo: "WARM-UP",
-      contenido: `AMRAP x 10 min* 
-200m row 
-12 MB G2OH 
-10 squats 
-8 lunges 
-4 gusanitos`
+      contenido: `Warm up “parejas”
+AMRAP x 12min 
+Max cals row 
+*plank hold/wall sit`
     },
     {
       titulo: "WOD",
-      contenido: `10-9-8-7-6-5-4-3-2-1
-Double DB front squat 
-Burpee over DB
-Cals row10-9-8-7-6-5-4-3-2-1
-Double DB front squat 
-Burpee over DB
-Cals row`
+      contenido: `For time 
+Chipper 
+1000m row 
+80 KB/DL
+60 squats 
+40 box steps over 
+20 wall balls 
+*cada 3 min 5 burpees`
     }
   ],
 
